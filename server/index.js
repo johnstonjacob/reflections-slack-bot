@@ -16,7 +16,7 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-if(process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
+if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -26,6 +26,6 @@ app.use((req, res, next) => {
 });
 // app.use('/', routes);
 
-app.listen(port, function () {
+app.listen(port, () => {
   log(`Server started on port ${port}!`);
 });
