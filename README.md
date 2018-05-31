@@ -5,8 +5,8 @@
 ### Local Setup
 1. Clone Repo
 2. ```npm install``` in the root directory
-3. ```npm run server``` and ```npm run server```
-4. create react app will manage reloading the page for you
+3. ```npm run react``` and ```npm run server```
+4. create react app will manage reloading the page for you upon edits, nodemon will reload the server upon changes
 5. setup ENV variables as follows
 ```
 BUILD = dev
