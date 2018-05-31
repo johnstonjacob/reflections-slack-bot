@@ -14,12 +14,14 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "cd client && react-scripts start",
+    "start": "npm run prod",
+    "react": "cd client && react-scripts start",
     "build": "cd client && react-scripts build",
     "test": "cd client && react-scripts test --env=jsdom",
     "eject": "cd client && react-scripts eject",
     "server": "nodemon server/index.js",
-    "prod": "concurrently 'npm run start' 'npm run server'"
+    "build-server": "node server/index.js",
+    "prod": " npm run build && npm run build-server"
   },
   "proxy": "http://localhost:${PORT:=8080}/"
 }
