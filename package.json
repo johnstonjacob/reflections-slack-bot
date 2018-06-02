@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@slack/client": "^4.2.2",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
     "concurrently": "^3.5.1",
@@ -27,7 +28,7 @@
     "build-server": "node server/index.js",
     "prod": "npm run build && npm run build-server"
   },
-  "proxy": "http://localhost:${PORT:=8080}/",
+  "proxy": "http://localhost:8080/",
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
