@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 const Login = props => (
-  // <div>
-  //   <button onClick={props.logIn} >Log In</button>
-  // </div>
+  <div>
+    <button onClick={props.logIn} >Log In</button>
+  </div>
   <div>
     < a href = "https://slack.com/oauth/authorize?scope=identity.basic&client_id=371272898032.373869995077" > < img alt = "Sign in with Slack"
     height = "40"
