@@ -37,15 +37,15 @@ class Home extends React.Component {
 
         <h1>Home Screen</h1>
 
-        <ButtonDropdown toggle={this.toggle} isOpen={this.state.dropdownOpen}>
-          <DropdownToggle caret>
+        {/* <ButtonDropdown toggle={this.toggle} isOpen={this.state.dropdownOpen}> */}
+          {/* <DropdownToggle caret>
           Is Alex homeless?
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>Yes</DropdownItem>
             <DropdownItem>No</DropdownItem>
           </DropdownMenu>
-        </ButtonDropdown>
+        </ButtonDropdown> */}
 
         <Container>
           <InputGroup>
