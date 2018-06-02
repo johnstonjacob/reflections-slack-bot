@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 
 const Login = props => (
   <div>
+  <div>
     <button onClick={props.logIn} >Log In</button>
   </div>
   <div>
@@ -13,7 +14,7 @@ const Login = props => (
     src = "https://platform.slack-edge.com/img/sign_in_with_slack.png"
     srcset = "https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" / > < /a>
     </div>
-
+</div>
 );
 
 Login.propTypes = {
