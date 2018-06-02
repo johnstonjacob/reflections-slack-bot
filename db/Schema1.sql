@@ -1,5 +1,6 @@
+/*
 DROP DATABASE IF EXISTS plumstack;
-
+*/
 CREATE DATABASE plumstack;
 
 CREATE SCHEMA plumschema;
