@@ -4,7 +4,7 @@ CREATE DATABASE plumStack;
 
 USE groupify;
 
-CREATE TABLE employyees (
+CREATE TABLE employees (
   ID int NOT NULL AUTO_INCREMENT,
   EmpName varchar(50) NOT NULL,
   SlackID varchar(50) NOT NULL,
@@ -30,16 +30,14 @@ CREATE TABLE response (
   FOREIGN KEY (MeetID) REFERENCES meetings(ID),
 );
 
-/*  Execute this file from the command line by typing:
- *    mysql -u student < schema.sql
- *  to create the database and the tables.*/
-
-/* For the record, these preferences were generated randomly.
- * Please don't read into them. :) 
+/*  
+mysql stuff, not postgres:
+Execute this file from the command line by typing:
+ *    mysql -u student < schemaexample.sql
+ *  to create the database and the tables.
 
 Example query:
-INSERT INTO students (id, name) VALUES (1, "Albrey");
-
+INSERT INTO meetings (ID, Notes, Message, MeetDate) VALUES (?, "This dude wilin", "Reflect on this and get back", [javascript current date variable], 7, 9);
 
 for current date,
 use javascript new date / date now. Easier to do on the javascript side.
