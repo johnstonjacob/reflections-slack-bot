@@ -1,5 +1,7 @@
 CREATE DATABASE plumstack;
 
+\connect plumstack
+
 CREATE SCHEMA plumschema;
 
 CREATE TABLE plumschema.employees (
@@ -14,13 +16,13 @@ CREATE TABLE plumschema.meetings (
   notes text,
   message text,
   meetdate integer,  
-  empid REFERENCES plumschema.employees(id),
-  resid REFERENCES plumschema.response (id)  
+  FOREIGN KEY empid REFERENCES plumschema.employees(id),
+  FOREIGN KEY resid REFERENCES plumschema.response (id)  
 );
 
 CREATE TABLE plumschema.response (
   id serial PRIMARY KEY,
   restext text,
   resdate integer,  
-  meetid REFERENCES plumschema.meetings(id),
+  FOREIGN KEY meetid REFERENCES plumschema.meetings(id),
 );
