@@ -11,16 +11,16 @@ CREATE TABLE plumschema.employees (
 
 CREATE TABLE plumschema.meetings (
   id serial PRIMARY KEY,
-  notes varchar(max),
-  message varchar(max),
-  meetdate int,  
+  notes text,
+  message text,
+  meetdate integer,  
   empid REFERENCES plumschema.employees(id),
   resid REFERENCES plumschema.response (id)  
 );
 
 CREATE TABLE plumschema.response (
   id serial PRIMARY KEY,
-  restext varchar(max),
-  resdate int,  
+  restext text,
+  resdate integer,  
   meetid REFERENCES plumschema.meetings(id),
 );
