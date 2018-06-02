@@ -2,9 +2,10 @@
 
 # dependencies
 /node_modules
-./client/node_modules
-./client/yarn.lock
-./package-lock.json
+/client/node_modules
+/client/yarn.lock
+package-lock.json
+/client/package-lock.json
 # testing
 /coverage
 
