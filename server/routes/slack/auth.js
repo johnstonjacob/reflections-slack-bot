@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 
 const router = express.Router();
-const winston = require('winston')
+const winston = require('winston');
 
 router.get('/', (req, res) => {
   winston.log('BODY:', req.body);
@@ -25,8 +25,9 @@ router.get('/', (req, res) => {
       res.redirect(`${__dirname}/public/index.html`);
     }
   }).then((response) => {
-    winston.log('NEW TOKEN', response) 
-;});
+    winston.log('NEW TOKEN', response)
+    ; 
+});
 });
 
 
