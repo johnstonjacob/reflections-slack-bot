@@ -8,6 +8,7 @@ const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
 const auth = require('./routes/slack/auth');
 
+
 dotenv.config({
   silent: true,
 });
@@ -20,7 +21,7 @@ function log(message) {
 }
 
 if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
-
+''
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {

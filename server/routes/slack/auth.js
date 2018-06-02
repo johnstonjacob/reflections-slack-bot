@@ -2,9 +2,10 @@ const express = require('express');
 const axios = require('axios');
 
 const router = express.Router();
+const winston = require('winston')
 
 router.get('/', (req, res) => {
-  console.log('BODY:', req.body);
+  winston.log('BODY:', req.body);
   if (!req.query.code) { // access denied
     return;
   }
@@ -19,11 +20,13 @@ router.get('/', (req, res) => {
     if (!error && response.statusCode == 200) {
       // Get an auth token
       const oauthToken = JSON.parse(body).access_token;
-      console.log('THE ONE TOKEN TO RULE THEM ALL', oauthToken);
+
       // OAuth done- redirect the user to wherever
-      res.redirect(`${__dirname}/public/success.html`);
+      res.redirect(`${__dirname}/public/index.html`);
     }
-  });
+  }).then((response) => {
+    winston.log('NEW TOKEN', response) 
+;});
 });
 
 
