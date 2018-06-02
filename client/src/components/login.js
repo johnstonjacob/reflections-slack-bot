@@ -8,7 +8,8 @@ const Login = props => (
       <button onClick={props.logIn} >Log In</button>
     </div>
     <div>
-      <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=371272898032.373869995077&redirect_uri=https://plumstack.herokuapp.com/slack/auth" > <img
+      <a href="https://slack.com/oauth/authorize?scope=identity.basic&client_id=371272898032.373869995077&redirect_uri=https://lit-escarpment-85113.herokuapp.com/slack/auth" > <img
+
         alt="Sign in with Slack"
 
         height="40"

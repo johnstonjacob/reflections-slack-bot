@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
-app.use('/slack/auth', auth)
+app.use('/slack/auth', auth);
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
