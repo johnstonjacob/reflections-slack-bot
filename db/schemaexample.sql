@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS groupify;
+DROP DATABASE IF EXISTS plumStack;
 
 CREATE DATABASE plumStack;
 
-USE groupify;
+USE plumStack;
 
 CREATE TABLE employees (
   ID int NOT NULL AUTO_INCREMENT,
