@@ -21,7 +21,7 @@ function log(message) {
 }
 
 if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
-''
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {

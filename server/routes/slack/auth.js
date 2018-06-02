@@ -4,7 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 const winston = require('winston');
 
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   winston.log('BODY:', req.body);
   if (!req.query.code) { // access denied
     return;
@@ -20,14 +20,12 @@ router.get('/', (req, res) => {
     if (!error && response.statusCode == 200) {
       // Get an auth token
       const oauthToken = JSON.parse(body).access_token;
-
       // OAuth done- redirect the user to wherever
       res.redirect(`${__dirname}/public/index.html`);
     }
   }).then((response) => {
-    winston.log('NEW TOKEN', response)
-    ; 
-});
+    winston.log('NEW TOKEN', response);
+  });
 });
 
 
