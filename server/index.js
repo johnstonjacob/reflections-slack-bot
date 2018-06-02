@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const employeeResponse = require('./routes/slack/employeeResponse');
 const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
-const auth = require('./routes/slack/auth'
+const auth = require('./routes/slack/auth');
 
 dotenv.config({
   silent: true,
