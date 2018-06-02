@@ -16,7 +16,7 @@ CREATE TABLE meetings (
   ID int NOT NULL AUTO_INCREMENT,
   Notes varchar(max),
   Message varchar(max),
-  MeetDate NULL,  
+  MeetDate int,  
   PRIMARY KEY (ID),
   FOREIGN KEY (EmpID) REFERENCES employees(ID),
   FOREIGN KEY (ResID) REFERENCES response(ID)  
@@ -25,7 +25,7 @@ CREATE TABLE meetings (
 CREATE TABLE response (
   ID int NOT NULL AUTO_INCREMENT,
   ResText varchar(max),
-  ResDate NULL,  
+  ResDate int,  
   PRIMARY KEY (ID),
   FOREIGN KEY (MeetID) REFERENCES meetings(ID),
 );
