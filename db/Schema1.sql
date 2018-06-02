@@ -1,33 +1,32 @@
-DROP DATABASE IF EXISTS plumStack;
+DROP DATABASE IF EXISTS plumstack;
 
-CREATE DATABASE plumStack;
+CREATE DATABASE plumstack;
 
-USE plumStack;
+CREATE SCHEMA plumschema;
 
-CREATE TABLE employees (
-  ID int NOT NULL AUTO_INCREMENT,
-  EmpName varchar(50) NOT NULL,
-  SlackID varchar(50) NOT NULL,
-  Cohort int NOT NULL,
-  PRIMARY KEY (ID)
+\connect plumstack
+
+CREATE TABLE plumschema.employees (
+  id serial PRIMARY KEY,
+  empname varchar(50) NOT NULL,
+  slackid varchar(50) NOT NULL,
+  cohort integer NOT NULL,
 );
 
-CREATE TABLE meetings (
-  ID int NOT NULL AUTO_INCREMENT,
-  Notes varchar(max),
-  Message varchar(max),
-  MeetDate int,  
-  PRIMARY KEY (ID),
-  FOREIGN KEY (EmpID) REFERENCES employees(ID),
-  FOREIGN KEY (ResID) REFERENCES response(ID)  
+CREATE TABLE plumschema.meetings (
+  id serial PRIMARY KEY,
+  notes varchar(max),
+  message varchar(max),
+  meetdate int,  
+  empid REFERENCES plumschema.employees(id),
+  resid REFERENCES plumschema.response (id)  
 );
 
-CREATE TABLE response (
-  ID int NOT NULL AUTO_INCREMENT,
-  ResText varchar(max),
-  ResDate int,  
-  PRIMARY KEY (ID),
-  FOREIGN KEY (MeetID) REFERENCES meetings(ID),
+CREATE TABLE plumschema.response (
+  id serial PRIMARY KEY,
+  restext varchar(max),
+  resdate int,  
+  meetid REFERENCES plumschema.meetings(id),
 );
 
 /*  
