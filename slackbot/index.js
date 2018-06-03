@@ -11,29 +11,36 @@ rtm.start();
 const userList = {};
 const channelList = {};
 
+// user = 'UAYRAJH8W'
+
+function postMessage(text, channel = 'CAZ0GKV6K') {
+  web.chat.postMessage({ channel, text });
+}
+
 web.users // get list of users and format into object to reference userID to name
   .list()
   .then((res) => {
-    res.members.map(item => (userList[item.id] = item.name));
-    console.log(userList);
+    res.members.map((item) => {
+      userList[item.id] = item.name;
+      return userList[item.id];
+    });
   });
 
 web.channels // get list of channels and format into object to reference channelID to name
   .list()
   .then((res) => {
-    console.log(res.channels[0].members); // get list of members of a channel
-    res.channels.map(item => (channelList[item.id] = item.name)); // format channels to their names in object format for easy reference
-    console.log(channelList);
+    res.channels.map((item) => {
+      channelList[item.id] = item.name;
+      return channelList[item.id];
+    });
+    // format channels to their names in object format for easy reference
   });
 
-function postMessage(text, user = 'UAYRAJH8W', channel = 'CAZ0GKV6K') {
-  web.chat.postMessage({ channel, text }).catch(console.error);
-}
-
 rtm.on('slack_event', (type, event) => {
-  console.log(event);
   if (type === 'message') {
-    if (event.text === 'hello') { rtm.sendMessage(`howdy, ${userList[event.user]}`, event.channel); }
+    if (event.text === 'hello') {
+      rtm.sendMessage(`howdy, ${userList[event.user]}`, event.channel);
+    }
   }
 });
 
