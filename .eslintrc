@@ -10,7 +10,6 @@
       {
         "extensions": [".js", ".jsx"]
       }
-    ],
-    "no-return-assign": 0
+    ]  
   }
 }
