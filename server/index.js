@@ -7,6 +7,7 @@ const employeeResponse = require('./routes/slack/employeeResponse');
 const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
 const auth = require('./routes/slack/auth');
+const slackMessage = require('./routes/dash/postMessage');
 
 dotenv.config({
   silent: true,
@@ -19,7 +20,8 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
+if (process.env.BUILD === 'prod')
+  app.use('/', express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,7 +33,8 @@ app.use((req, res, next) => {
 app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
-app.use('/slack/auth', auth)
+app.use('/slack/auth', auth);
+app.use('/dash/postMessage', slackMessage);
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
