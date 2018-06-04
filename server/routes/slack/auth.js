@@ -25,8 +25,9 @@ router.get('/', function(req, res) {
       console.log(oauthToken);
       request.get(
         `slack.com/api/users.identity?token=awarded_token?token=${oauthToken}`,
-        (err, res) => {
-          console.log(res);
+        (err, response) => {
+          console.log(response);
+          res.send(response);
         }
       );
     }
