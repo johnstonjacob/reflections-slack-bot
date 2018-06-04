@@ -23,9 +23,9 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-function test() {
-  console.log('Im the server and I log stuffff');
-}
+// function test() {
+//   process.stdout.write('Im the server and I log stuffff');
+// }
 
 if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
 
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  test();
+  log('Im in the server and im logginggg');
   next();
 });
 
