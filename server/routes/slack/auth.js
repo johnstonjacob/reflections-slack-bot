@@ -9,8 +9,8 @@ function log(message) {
 }
 
 
-app.use((req, res, next) => {
-  log('Im in the server and im logginggg');
+router.use((req, res, next) => {
+  log('Im in slack/auth file');
   next();
 });
 
