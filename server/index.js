@@ -8,6 +8,7 @@ const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
 const auth = require('./routes/slack/auth');
 const slackMessage = require('./routes/dash/postMessage');
+const slackUsers = require('./routes/dash/getUsers');
 
 dotenv.config({
   silent: true,
@@ -34,6 +35,7 @@ app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
 app.use('/slack/auth', auth);
 app.use('/dash/postmessage', slackMessage);
+app.use('/dash/getUsers', slackUsers);
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);

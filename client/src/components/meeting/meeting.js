@@ -1,17 +1,8 @@
 import React from 'react';
-import {
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  InputGroup,
-  InputGroupAddon,
-  Container,
-  Col,
-  Row,
-  Button,
-} from 'reactstrap';
+import { Form, FormGroup, Input, Label, Container, Col, Row, Button } from 'reactstrap';
 import axios from 'axios';
+
+import Dropdown from './dropdown';
 
 class Meeting extends React.Component {
   constructor(props) {
@@ -20,17 +11,35 @@ class Meeting extends React.Component {
       student: '',
       notes: '',
       message: '',
+      students: [],
+      dropdownOpen: false,
     };
     this.studentChange = this.studentChange.bind(this);
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
+    this.getStudents = this.getStudents.bind(this);
+    this.toggle = this.toggle.bind(this);
+
+    this.getStudents();
+  }
+
+  toggle() {
+    this.setState((prevState) => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
   }
 
   studentChange(e) {
     this.setState({
       student: e.target.value,
     });
+  }
+
+  getStudents() {
+    const options = { method: 'GET', url: '/dash/getUsers' };
+
+    axios(options).then((res) => this.setState({ students: res.data }));
   }
 
   notesChange(e) {
@@ -55,12 +64,8 @@ class Meeting extends React.Component {
         notes: this.state.notes,
         message: this.state.message,
       })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(console.log)
+      .catch(console.error);
   }
 
   render() {
@@ -87,14 +92,7 @@ class Meeting extends React.Component {
         <h1>Meeting Screen</h1>
 
         <Container>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-            <Input
-              placeholder="Student Username"
-              value={this.state.student}
-              onChange={this.studentChange}
-            />
-          </InputGroup>
+          <Dropdown students={this.state.students} />
           <Form>
             <FormGroup>
               <Label for="exampleText">Notes</Label>

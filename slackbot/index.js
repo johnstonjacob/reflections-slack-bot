@@ -13,8 +13,12 @@ const channelList = {};
 
 // user = 'UAYRAJH8W'
 
-function postMessage(text, channel = 'CAZ0GKV6K') {
+function postMessage(text, channel = 'UAYRAJH8W') {
   web.chat.postMessage({ channel, text });
+}
+
+function getUsers() {
+  return userList;
 }
 
 web.users // get list of users and format into object to reference userID to name
@@ -45,3 +49,4 @@ rtm.on('slack_event', (type, event) => {
 });
 
 module.exports.postMessage = postMessage;
+module.exports.getUsers = getUsers;
