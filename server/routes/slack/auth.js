@@ -17,6 +17,7 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
   log('BODY:', req.body);
+  process.stdout.write("I'm the bodddy", req.body);
   if (!req.query.code) { // access denied
     return;
   }
