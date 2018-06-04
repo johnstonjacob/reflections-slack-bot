@@ -1,5 +1,6 @@
 import React from 'react';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 export default function Dropdown(props) {
   return (
@@ -7,7 +8,7 @@ export default function Dropdown(props) {
       <DropdownToggle caret>Students</DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Students</DropdownItem>
-        {props.students.map((item) => (
+        {props.students.map(item => (
           <DropdownItem key={item[0]}>
             {item[0]} - {item[1]}
           </DropdownItem>
@@ -16,3 +17,8 @@ export default function Dropdown(props) {
     </UncontrolledDropdown>
   );
 }
+
+Dropdown.propTypes = {
+  // students: PropTypes.array.isRequired,
+  students: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+};
