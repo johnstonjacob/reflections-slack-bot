@@ -4,7 +4,7 @@ const axios = require('axios');
 const router = express.Router();
 const winston = require('winston');
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
   winston.log('BODY:', req.body);
   if (!req.query.code) { // access denied
     return;
