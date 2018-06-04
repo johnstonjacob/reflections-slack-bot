@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
       code: req.query.code,
     },
   };
-  axios.post('https://slack.com/api/oauth.access', data, (error, response, body) => {
+  axios.get('https://slack.com/api/oauth.access', data, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       // Get an auth token
       const oauthToken = JSON.parse(body).access_token;
