@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('request');
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/', function(req, res) {
     },
   };
 
-  request.post('https://slack.com/api/oauth.access', data, function(error, response, body) {
+  request.get('https://slack.com/api/oauth.access', data, function(error, response, body) {
     if (!error && response.statusCode == 200) {
       // Get an auth token
       const oauthToken = JSON.parse(body).access_token;
