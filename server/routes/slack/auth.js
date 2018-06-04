@@ -50,8 +50,8 @@ router.get('/', (req, res) => {
   const options = {
     uri: `https://slack.com/api/oauth.access?code=${
       req.query.code
-    }&client_id=${process.env.CLIENT_ID
-    }&client_secret=${process.env.CLIENT_SECRET
+    }&client_id=${process.env.LOGIN_CLIENT_ID
+    }&client_secret=${process.env.LOGING_CLIENT_SECRET
     }&redirect_uri=${process.env.REDIRECT_URI}`,
     method: 'GET',
   };
