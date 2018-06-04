@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
-import Meeting from './components/meeting';
+import Meeting from './components/meeting/meeting';
 
 class App extends React.Component {
   constructor() {
@@ -34,15 +34,13 @@ class App extends React.Component {
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return (
-          <Meeting />
-        );
+        return <Meeting />;
 
       default:
-        return (
-          this.state.isAuthenticated ?
-            <Home changeView={this.changeView} /> :
-            <Login logIn={this.logIn} />
+        return this.state.isAuthenticated ? (
+          <Home changeView={this.changeView} />
+        ) : (
+          <Login logIn={this.logIn} />
         );
     }
   }

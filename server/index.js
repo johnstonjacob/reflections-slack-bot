@@ -8,6 +8,8 @@ const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
 const auth = require('./routes/slack/auth');
 const slackMessage = require('./routes/dash/postMessage');
+const slackUsers = require('./routes/dash/getUsers');
+const slackChannels = require('./routes/dash/getchannels');
 
 
 dotenv.config({
@@ -35,6 +37,8 @@ app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
 app.use('/slack/auth', auth);
 app.use('/dash/postmessage', slackMessage);
+app.use('/dash/getusers', slackUsers);
+app.use('/dash/getchannels', slackChannels);
 
 
 app.listen(port, () => {
