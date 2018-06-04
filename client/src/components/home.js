@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cohorts: [],
+      members: [],
     };
+
+    this.getMembers = this.getMembers.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +25,18 @@ class Home extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  getMembers(e) {
+    console.log('members: ', e.target.value);
+    const membersArray = [];
+    e.target.value.split(',').forEach((item) => {
+      membersArray.push(item);
+    });
+    console.log(membersArray);
+
+
+    this.setState({ members: membersArray });
   }
 
 
@@ -46,12 +62,23 @@ class Home extends React.Component {
         >
           Meeting Props
         </button>
+        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
 
         <h1>Home Screen</h1>
 
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
         {this.state.cohorts.map(cohort => (
-          <h5 key={cohort.id}>{cohort.cohort.name}</h5>
+          <Button
+            outline
+            color="primary"
+            key={cohort.id}
+            value={cohort.cohort.members}
+            onClick={this.getMembers}
+          >{cohort.cohort.name}
+          </Button>
+        ))}
+
+        {this.state.members.map(person => (
+          <h4>{person}</h4>
         ))}
 
       </div>
