@@ -7,13 +7,14 @@ router.get('/', function(req, res) {
     // access denied
     return;
   }
-  var data = {
+  const data = {
     form: {
       client_id: process.env.LOGIN_CLIENT_ID,
       client_secret: process.env.LOGIN_CLIENT_SECRET,
       code: req.query.code,
     },
   };
+
   request.post('https://slack.com/api/oauth.access', data, function(error, response, body) {
     if (!error && response.statusCode == 200) {
       // Get an auth token
