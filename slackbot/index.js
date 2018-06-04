@@ -21,6 +21,10 @@ function getUsers() {
   return userList;
 }
 
+function getChannels() {
+  return channelList;
+}
+
 web.users // get list of users and format into object to reference userID to name
   .list()
   .then((res) => {
@@ -34,7 +38,7 @@ web.channels // get list of channels and format into object to reference channel
   .list()
   .then((res) => {
     res.channels.map((item) => {
-      channelList[item.id] = item.name;
+      channelList[item.id] = { name: item.name, members: item.members };
       return channelList[item.id];
     });
     // format channels to their names in object format for easy reference
@@ -50,3 +54,4 @@ rtm.on('slack_event', (type, event) => {
 
 module.exports.postMessage = postMessage;
 module.exports.getUsers = getUsers;
+module.exports.getChannels = getChannels;

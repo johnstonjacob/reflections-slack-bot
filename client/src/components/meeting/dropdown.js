@@ -4,7 +4,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 export default function Dropdown(props) {
   return (
     <UncontrolledDropdown>
-      <DropdownToggle caret>Dropdown</DropdownToggle>
+      <DropdownToggle caret>Students</DropdownToggle>
       <DropdownMenu>
         <DropdownItem header>Students</DropdownItem>
         {props.students.map((item) => (

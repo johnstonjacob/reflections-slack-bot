@@ -37,7 +37,7 @@ class Meeting extends React.Component {
   }
 
   getStudents() {
-    const options = { method: 'GET', url: '/dash/getUsers' };
+    const options = { method: 'GET', url: '/dash/getusers' };
 
     axios(options).then((res) => this.setState({ students: res.data }));
   }
