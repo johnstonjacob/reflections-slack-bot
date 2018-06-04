@@ -3,7 +3,7 @@ const slackbot = require('../../../slackbot/index');
 
 const router = express.Router();
 
-router.post('/message', (req, res) => {
+router.post('/', (req, res) => {
   res.send('Message Sent');
   slackbot.postMessage(req.body.text);
 });
