@@ -20,8 +20,7 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-if (process.env.BUILD === 'prod')
-  app.use('/', express.static(`${__dirname}/../client/build`));
+if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -34,7 +33,7 @@ app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
 app.use('/slack/auth', auth);
-app.use('/dash/postMessage', slackMessage);
+app.use('/dash/postmessage', slackMessage);
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
