@@ -27,7 +27,7 @@ if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../c
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  log(`${req.method} on ${req.url}`);
+  console.log(`${req.method} on ${req.url}`);
   next();
 });
 
