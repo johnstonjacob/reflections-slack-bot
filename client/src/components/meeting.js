@@ -51,7 +51,7 @@ class Meeting extends React.Component {
     console.log(`Notes: ${this.state.notes}`);
     console.log(`Message: ${this.state.message}`);
     axios.post(
-      '/message',
+      '/dash/postMessage',
       {
         student: this.state.student,
         notes: this.state.notes,
