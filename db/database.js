@@ -1,6 +1,5 @@
 const pg = require('pg');
-const connectionString = process.env.DATABASE_URL;
-// . postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack
+const connectionString = 'postgres://afzwcyhwkgcvpv:cd08fcdc9c234df91babe094f40144b316d745f0038130623e44e7245e7db397@ec2-107-20-133-82.compute-1.amazonaws.com:5432/d9mjkq7avau9qj'
 
 const schema = require('./Schema1.sql')
 
