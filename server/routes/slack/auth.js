@@ -46,6 +46,7 @@ const request = require('request');
 
 
 router.get('/', (req, res) => {
+  process.stdout.write('IN THE AUTH FILE', req.body);
   const options = {
     uri: `https://slack.com/api/oauth.access?code=${
       req.query.code
@@ -57,7 +58,7 @@ router.get('/', (req, res) => {
   request(options, (error, response, body) => {
     const JSONresponse = JSON.parse(body);
     if (!JSONresponse.ok) {
-      process.stdout.write(JSONresponse);
+      process.stdout.write(JSON.stringify(JSONresponse));
       res.send(`Error encountered: \n${JSON.stringify(JSONresponse)}`).status(200).end();
     } else {
       process.stdout.write(JSON.stringify(JSONresponse));
