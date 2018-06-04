@@ -60,7 +60,7 @@ router.get('/', (req, res) => {
       process.stdout.write(JSONresponse);
       res.send(`Error encountered: \n${JSON.stringify(JSONresponse)}`).status(200).end();
     } else {
-      process.stdout.write(JSONresponse);
+      process.stdout.write(JSON.stringify(JSONresponse));
       res.send('Success!');
     }
   });
