@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
   logIn() {
+    console.log("I'm loggin in!");
     this.setState({
       isAuthenticated: true,
     });

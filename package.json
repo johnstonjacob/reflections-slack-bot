@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-
     "@slack/client": "^4.2.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
