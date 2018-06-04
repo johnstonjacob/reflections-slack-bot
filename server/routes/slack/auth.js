@@ -20,6 +20,7 @@ router.get('/', function(req, res) {
       // Get an auth token
       const oauthToken = JSON.parse(body).access_token;
       // OAuth done- redirect the user to wherever
+      console.log(oauthToken);
       res.send('success');
     }
   });
