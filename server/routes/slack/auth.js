@@ -58,7 +58,7 @@ router.get('/', (req, res) => {
   request(options, (error, response, body) => {
     const JSONresponse = JSON.parse(body);
     if (!JSONresponse.ok) {
-      process.stdout.write(JSON.stringify(JSONresponse));
+      process.stdout.write("I'm an error", JSON.stringify(JSONresponse));
       res.send(`Error encountered: \n${JSON.stringify(JSONresponse)}`).status(200).end();
     } else {
       process.stdout.write(JSON.stringify(JSONresponse));
