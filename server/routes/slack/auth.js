@@ -4,8 +4,19 @@ const axios = require('axios');
 const router = express.Router();
 const winston = require('winston');
 
+function log(message) {
+  process.stdout.write(`${message}\n`);
+}
+
+
+app.use((req, res, next) => {
+  log('Im in the server and im logginggg');
+  next();
+});
+
+
 router.get('/', (req, res) => {
-  winston.log('BODY:', req.body);
+  log('BODY:', req.body);
   if (!req.query.code) { // access denied
     return;
   }
