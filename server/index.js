@@ -23,6 +23,10 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
+function test() {
+  console.log('Im the server and I log stuffff');
+}
+
 if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());
@@ -31,6 +35,12 @@ app.use((req, res, next) => {
   log(`${req.method} on ${req.url}`);
   next();
 });
+
+app.use((req, res, next) => {
+  test();
+  next();
+});
+
 
 app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);
