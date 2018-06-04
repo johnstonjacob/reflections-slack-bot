@@ -13,7 +13,6 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 
-
 class Meeting extends React.Component {
   constructor(props) {
     super(props);
@@ -50,14 +49,12 @@ class Meeting extends React.Component {
     console.log(`Student Name: ${this.state.student}`);
     console.log(`Notes: ${this.state.notes}`);
     console.log(`Message: ${this.state.message}`);
-    axios.post(
-      '/dash/postMessage',
-      {
+    axios
+      .post('/dash/postmessage', {
         student: this.state.student,
         notes: this.state.notes,
         message: this.state.message,
-      },
-    )
+      })
       .then((response) => {
         console.log(response.data);
       })
@@ -72,8 +69,20 @@ class Meeting extends React.Component {
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
-        <button onClick={() => { console.log(this.state); }} >Meeting State</button>
-        <button onClick={() => { console.log(this.props); }} >Meeting Props</button>
+        <button
+          onClick={() => {
+            console.log(this.state);
+          }}
+        >
+          Meeting State
+        </button>
+        <button
+          onClick={() => {
+            console.log(this.props);
+          }}
+        >
+          Meeting Props
+        </button>
 
         <h1>Meeting Screen</h1>
 
@@ -116,7 +125,6 @@ class Meeting extends React.Component {
             <Button onClick={this.submitMessage}> Submit </Button>
           </Form>
         </Container>
-
       </div>
     );
   }
