@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 const Login = props => (
+
   <div>
     <div>
       <button onClick={props.logIn} >Log In</button>
@@ -19,13 +20,13 @@ const Login = props => (
       />
       </a>
     </div>
+
   </div>
 );
 
 Login.propTypes = {
   logIn: PropTypes.func.isRequired,
 };
-
 
 export default Login;
 
