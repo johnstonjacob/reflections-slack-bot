@@ -23,9 +23,14 @@ class Meeting extends React.Component {
 
     this.getStudents();
   }
+  getStudents() {
+    const options = { method: 'GET', url: '/dash/getusers' };
+
+    axios(options).then(res => this.setState({ students: res.data }));
+  }
 
   toggle() {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       dropdownOpen: !prevState.dropdownOpen,
     }));
   }
@@ -36,11 +41,6 @@ class Meeting extends React.Component {
     });
   }
 
-  getStudents() {
-    const options = { method: 'GET', url: '/dash/getusers' };
-
-    axios(options).then((res) => this.setState({ students: res.data }));
-  }
 
   notesChange(e) {
     this.setState({
