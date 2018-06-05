@@ -15,7 +15,6 @@ router.get('/', function(req, res) {
     }&client_secret=${
       process.env.LOGIN_CLIENT_SECRET
     }&code=${code}&redirect_uri=http://206.189.170.211/slack/auth`,
-    headers: { "Content-Type" => "application/x-www-form-urlencoded"}
   };
   request(options)
     .then((response) => console.log(response))
