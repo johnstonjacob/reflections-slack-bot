@@ -7,7 +7,7 @@ dotenv.config({ silent: true });
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  console.log("REQ TEST", req)
+  console.log("REQ.query.code TEST", req.query.code)
   const code = req.query.code;
   const options = {
     method: 'GET',
@@ -18,7 +18,10 @@ router.get('/', function(req, res) {
     }&code=${code}&redirect_uri=http://206.189.221.89/slack/auth`,
   };
   request(options)
-    .then(res.send)
+    .then((response)=>{
+      console.log("RESPONSE FROM GOOGLE", response)
+      res.send(response)
+        })
     .catch(console.error);
 });
 
