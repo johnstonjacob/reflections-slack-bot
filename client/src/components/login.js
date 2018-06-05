@@ -13,7 +13,7 @@ const Login = (props) => (
       </Button>
     </div>
     <div>
-      <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.170.211/slack/auth">
+      <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth">
         <img
           alt="Sign in with Slack"
           height="40"
