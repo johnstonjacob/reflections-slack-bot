@@ -7,6 +7,7 @@ dotenv.config({ silent: true });
 const router = express.Router();
 
 router.get('/', function(req, res) {
+  console.log("REQ.BODY TEST", req.body)
   const code = req.query.code;
   const options = {
     method: 'GET',
