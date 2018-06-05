@@ -10,6 +10,9 @@ const auth = require('./routes/slack/auth');
 const slackMessage = require('./routes/dash/postMessage');
 const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
+const session = require('express-session')
+const passport = require('passport')
+
 
 dotenv.config({
   silent: true,
@@ -30,6 +33,17 @@ app.use((req, res, next) => {
   console.log(`${req.method} on ${req.url}`);
   next();
 });
+
+app.use(session({
+  secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 3600000
+  }))
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);

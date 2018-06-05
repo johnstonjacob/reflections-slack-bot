@@ -18,9 +18,9 @@ router.get('/', function(req, res) {
     }&code=${code}&redirect_uri=http://206.189.221.89/slack/auth`,
   };
   request(options)
-    .then((response)=>{
+    .then((user)=>{
       console.log("RESPONSE FROM GOOGLE", response)
-      res.send(response)
+      res.send(user)
         })
     .catch(console.error);
 });
