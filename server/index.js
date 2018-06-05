@@ -8,7 +8,7 @@ const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
 const auth = require('./routes/slack/auth');
 const slackMessage = require('./routes/dash/postMessage');
-const slackUsers = require('./routes/dash/getUsers');
+const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
 
 dotenv.config({
@@ -27,7 +27,7 @@ if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../c
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  log(`${req.method} on ${req.url}`);
+  console.log(`${req.method} on ${req.url}`);
   next();
 });
 
