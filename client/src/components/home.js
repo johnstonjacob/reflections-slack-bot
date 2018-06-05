@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { Button } from 'reactstrap';
+import {
+  Container,
+  Button,
+  Col,
+  Row,
+} from 'reactstrap';
 
 class Home extends React.Component {
   constructor(props) {
@@ -18,7 +23,6 @@ class Home extends React.Component {
   componentDidMount() {
     axios.get('/dash/getchannels', {})
       .then((response) => {
-        // console.log(response.data);
         this.setState({
           cohorts: response.data,
         });
@@ -29,7 +33,6 @@ class Home extends React.Component {
 
     axios.get('/dash/getusers', {})
       .then((response) => {
-        // console.log(response.data);
         this.setState({
           allStudents: response.data,
         });
@@ -40,64 +43,58 @@ class Home extends React.Component {
   }
 
   getMembers(e) {
-    // console.log('members: ', e.target.value);
     const membersArray = [];
 
     e.target.value.split(',').forEach((item) => {
-      // console.log(item);
       this.state.allStudents.forEach((tuple) => {
         if (tuple[0] === item) {
-          // console.log(tuple[1]);
           membersArray.push(tuple);
         }
       });
     });
 
     this.setState({ members: membersArray });
-    // console.log(this.state.members);
   }
 
 
   render() {
     return (
       <div className="App">
+        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
+        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
-
-        <button
-          onClick={() => {
-            console.log(this.state);
-          }}
-        >
-          Meeting State
-        </button>
-        <button
-          onClick={() => {
-            console.log(this.props);
-          }}
-        >
-          Meeting Props
-        </button>
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
-
         <h1>Home Screen</h1>
 
-        {this.state.cohorts.map(cohort => (
-          <Button
-            outline
-            color="primary"
-            key={cohort.id}
-            value={cohort.cohort.members}
-            onClick={this.getMembers}
-          >{cohort.cohort.name}
-          </Button>
-        ))}
+        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
 
-        {this.state.members.map(person => (
-          <h4 key={person[0]}>{person[1]}</h4>
-        ))}
+        <Container>
+          <Row>
+            <Col>
+              <h1>Cohorts</h1>
+              {this.state.cohorts.map(cohort => (
+                <Col key={cohort.id} >
+                  <Button
+                    outline
+                    color="primary"
+                    key={cohort.id}
+                    value={cohort.cohort.members}
+                    onClick={this.getMembers}
+                  >{cohort.cohort.name}
+                  </Button>
+                </Col>
+            ))}
+            </Col>
+            <Col>
+              <h1>Students</h1>
+              {this.state.members.map(person => (
+                <h4 key={person[0]}>{person[1]}</h4>
+              ))}
+            </Col>
+          </Row>
+        </Container>
 
       </div>
     );
@@ -109,14 +106,3 @@ Home.propTypes = {
 };
 
 export default Home;
-
-// const RepoList = props => (
-//   <div>
-//     {props.repos.map(repo => (
-//       <ul className="repos" key={repo.id}><a href={repo.url}>{repo.name}</a>
-//         <h5>By: {repo.owner}</h5>
-//         <h6>{repo.description}</h6>
-//       </ul>
-// ))}
-//   </div>
-// );
