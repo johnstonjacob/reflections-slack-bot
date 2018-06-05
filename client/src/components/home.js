@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cohorts: [],
+      members: [],
+      allStudents: [],
     };
+
+    this.getMembers = this.getMembers.bind(this);
   }
 
   componentDidMount() {
     axios.get('/dash/getchannels', {})
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           cohorts: response.data,
         });
@@ -21,6 +26,35 @@ class Home extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+
+    axios.get('/dash/getusers', {})
+      .then((response) => {
+        // console.log(response.data);
+        this.setState({
+          allStudents: response.data,
+        });
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  getMembers(e) {
+    // console.log('members: ', e.target.value);
+    const membersArray = [];
+
+    e.target.value.split(',').forEach((item) => {
+      // console.log(item);
+      this.state.allStudents.forEach((tuple) => {
+        if (tuple[0] === item) {
+          // console.log(tuple[1]);
+          membersArray.push(tuple);
+        }
+      });
+    });
+
+    this.setState({ members: membersArray });
+    // console.log(this.state.members);
   }
 
 
@@ -46,12 +80,23 @@ class Home extends React.Component {
         >
           Meeting Props
         </button>
+        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
 
         <h1>Home Screen</h1>
 
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
         {this.state.cohorts.map(cohort => (
-          <h5 key={cohort.id}>{cohort.cohort.name}</h5>
+          <Button
+            outline
+            color="primary"
+            key={cohort.id}
+            value={cohort.cohort.members}
+            onClick={this.getMembers}
+          >{cohort.cohort.name}
+          </Button>
+        ))}
+
+        {this.state.members.map(person => (
+          <h4 key={person[0]}>{person[1]}</h4>
         ))}
 
       </div>
