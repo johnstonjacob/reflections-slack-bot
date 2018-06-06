@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', function(req, res) {
 	console.log("REQ in the redirect", req.body)
-
+	res.send(req.body)
 })
 
 
