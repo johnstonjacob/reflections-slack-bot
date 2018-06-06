@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 
 app.use(session({
   secret: 'keyboard cat',
-  saveUninitialized: true,
+  saveUninitialized: false,
   resave: true,
   cookie: {
     maxAge: 3600000

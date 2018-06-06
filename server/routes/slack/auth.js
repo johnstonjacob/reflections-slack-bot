@@ -28,10 +28,6 @@ router.get('/', function(req, res) {
       if(parsed.access_token){
         req.session.cookie.isAuthenticated = true;
         console.log("REQ SESSION in AUTH ROUTE", req.session)
-      // res.redirect(url.format({
-      //        pathname:"/",
-      //        query:user.access_token,
-      //      }));
       res.redirect("/")
       // res.json(user)
     }else{
