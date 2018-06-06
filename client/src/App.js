@@ -22,10 +22,18 @@ class App extends React.Component {
 
 
   componentDidMount(){
-     axios({
-      method: 'get',
-      url:'/checkAuth',
-      credentials: 'include',
+   //   axios({
+   //    method: 'get',
+   //    url:'/checkAuth',
+   //    credentials: 'include',
+   // })
+   $.ajax({
+     url: "/checkAuth",
+     method: "get",
+     crossDomain: true,
+     xhrFields: {
+       withCredentials: true
+     }
    })
     .then((response)=>{
       console.log("response:", response.data)
