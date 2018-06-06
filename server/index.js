@@ -54,7 +54,7 @@ app.use('/slack/auth', auth);
 app.use('/dash/postmessage', slackMessage);
 app.use('/dash/getusers', slackUsers);
 app.use('/dash/getchannels', slackChannels);
-app.use('/slack/auth/redirect')
+// app.use('/slack/auth/redirect', authRedirect)
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
