@@ -23,6 +23,8 @@ router.get('/', function(req, res) {
   request(options)
     .then((user)=>{
       console.log("RESPONSE FROM SLACK", user)
+      req.session.cookie.isAuthenticated = true;
+      res.redirect('/redirect')
       res.send(user)
         })
     .catch(console.error);

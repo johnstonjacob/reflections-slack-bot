@@ -10,7 +10,7 @@ const auth = require('./routes/slack/auth');
 const slackMessage = require('./routes/dash/postMessage');
 const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
-// const authRedirect = require('./routes/slack/authRedirect')
+const authRedirect = require('./routes/slack/authRedirect')
 const session = require('express-session')
 // const passport = require('passport')
 
@@ -35,14 +35,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(session({
-//   secret: 'keyboard cat',
-//   saveUninitialized: true,
-//   resave: true,
-//   cookie: {
-//     maxAge: 3600000
-//   }
-// }))
+app.use(session({
+  secret: 'keyboard cat',
+  saveUninitialized: true,
+  resave: true,
+  cookie: {
+    maxAge: 3600000
+  }
+}))
 
 // app.use(passport.initialize());
 // app.use(passport.session());
@@ -54,7 +54,7 @@ app.use('/slack/auth', auth);
 app.use('/dash/postmessage', slackMessage);
 app.use('/dash/getusers', slackUsers);
 app.use('/dash/getchannels', slackChannels);
-// app.use('/slack/auth/redirect', authRedirect)
+app.use('/slack/auth/redirect', authRedirect)
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
