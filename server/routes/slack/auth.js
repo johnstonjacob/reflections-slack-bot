@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
            }));
         // var string = encodeURIComponent('something that would break');
         // res.redirect('/?valid=' + string);
-      });
+      })
     .catch(console.error);
 });
 
