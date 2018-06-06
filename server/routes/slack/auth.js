@@ -23,8 +23,10 @@ router.get('/', function(req, res) {
   };
   request(options)
     .then((user)=>{
-      console.log("RESPONSE FROM SLACK", user.access_token)
-      req.session.cookie.isAuthenticated = true;
+      console.log("RESPONSE FROM SLACK", user)
+      if(user.access_token){
+        req.session.cookie.isAuthenticated = true;
+      }
       console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect(url.format({
              pathname:"/",
