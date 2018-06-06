@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
       //        query:user.access_token,
       //      }));
       // res.redirect("/")
-      res.json(user)
+      // res.json(user)
     }else{
       res.redirect('/failedLogin')
     }
