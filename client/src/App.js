@@ -22,7 +22,7 @@ class App extends React.Component {
 
 
   componentDidMount(){
-     axios.get('/')
+     axios.get('/checkAuth')
     .then((response)=>{
       console.log("response:", response.data)
     })
