@@ -24,7 +24,7 @@ class App extends React.Component {
   componentDidMount(){
      axios({
       method: 'get',
-      url:'/checkAuth'
+      url:'/checkAuth',
       credentials: 'include',
    })
     .then((response)=>{
