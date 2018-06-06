@@ -5,7 +5,7 @@ import Login from './components/login';
 import Meeting from './components/meeting/meeting';
 import axios from 'axios'
 axios.defaults.withCredentials = true;
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class App extends React.Component {
   constructor() {
