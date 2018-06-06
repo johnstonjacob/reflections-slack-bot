@@ -27,7 +27,7 @@ router.get('/', function(req, res) {
       req.session.cookie.isAuthenticated = true;
       console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect(url.format({
-             pathname:"redirect",
+             pathname:"auth/redirect",
              query:user.access_token,
            }));
         // var string = encodeURIComponent('something that would break');
