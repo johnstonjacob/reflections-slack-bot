@@ -4,6 +4,7 @@ import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
 import axios from 'axios'
+axios.defaults.withCredentials = true;
 import $ from 'jquery'
 
 class App extends React.Component {
@@ -23,19 +24,19 @@ class App extends React.Component {
 
 
   componentDidMount(){
-   //   axios({
-   //    method: 'get',
-   //    url:'/checkAuth',
-   //    credentials: 'include',
-   // })
-   $.ajax({
-     url: "/checkAuth",
-     method: "get",
-     crossDomain: true,
-     xhrFields: {
-       withCredentials: true
-     }
+     axios({
+      method: 'get',
+      url:'/checkAuth',
+      // credentials: 'include',
    })
+   // $.ajax({
+   //   url: "/checkAuth",
+   //   method: "get",
+   //   crossDomain: true,
+   //   xhrFields: {
+   //     withCredentials: true
+   //   }
+   // })
     .then((response)=>{
       console.log("response:", response.data)
     })
