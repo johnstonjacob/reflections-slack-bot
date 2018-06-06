@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
   };
   request(options)
     .then((user)=>{
-      console.log("RESPONSE FROM SLACK", response)
+      console.log("RESPONSE FROM SLACK", user)
       res.send(user)
         })
     .catch(console.error);
