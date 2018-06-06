@@ -67,7 +67,7 @@ class App extends React.Component {
 
   logOut(){
     this.setState({
-      isAuthenticated: false;
+      isAuthenticated: false
     })
     axios.get("/logout")
   }
