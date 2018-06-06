@@ -27,12 +27,14 @@ router.get('/', function(req, res) {
       let parsed = JSON.parse(user)
       if(parsed.access_token){
         req.session.cookie.isAuthenticated = true;
-      }
       console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect(url.format({
-             pathname:"/",
+             pathname:"/checkAuth",
              query:user.access_token,
            }));
+    }else{
+      res.redirect('/failedLogin')
+    }
         // var string = encodeURIComponent('something that would break');
         // res.redirect('/?valid=' + string);
       })
