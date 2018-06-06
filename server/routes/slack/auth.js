@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
   };
   request(options)
     .then((user)=>{
-      console.log("RESPONSE FROM SLACK", user)
+      console.log("RESPONSE FROM SLACK", user.access_token)
       req.session.cookie.isAuthenticated = true;
       res.redirect(url.format({
              pathname:"/",
