@@ -13,7 +13,7 @@ const Login = (props) => (
       </Button>
     </div>
     <div>
-      <button onClick={(e)=>props.slackLogin(e)}>
+      <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth">
         <img
           alt="Sign in with Slack"
           height="40"
@@ -21,7 +21,7 @@ const Login = (props) => (
           src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
           srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
         />
-      </button>
+      </a>
     </div>
   </div>
 );

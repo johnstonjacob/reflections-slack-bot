@@ -1,6 +1,9 @@
 const express = require('express');
 const request = require('request-promise-native');
 const dotenv = require('dotenv');
+const session = require('express-session');
+// const passport = require('passport');
+// const SlackStrategy = require('passport-slack').Strategy;
 
 dotenv.config({ silent: true });
 
@@ -19,7 +22,7 @@ router.get('/', function(req, res) {
   };
   request(options)
     .then((user)=>{
-      console.log("RESPONSE FROM GOOGLE", response)
+      console.log("RESPONSE FROM SLACK", response)
       res.send(user)
         })
     .catch(console.error);
