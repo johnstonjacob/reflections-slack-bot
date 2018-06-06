@@ -26,7 +26,7 @@ class App extends React.Component {
   componentDidMount(){
      axios({
       method: 'get',
-      url:'/checkAuth',
+      url:'/slack/auth',
       // credentials: 'include',
    })
    // $.ajax({
@@ -39,9 +39,9 @@ class App extends React.Component {
    // })
     .then((response)=>{
       console.log("response:", response.data)
-      this.setState({
-        isAuthenticated: response.data.isAuthenticated
-      })
+      // this.setState({
+      //   isAuthenticated: response.data.isAuthenticated
+      // })
     })
   }
 
@@ -57,12 +57,12 @@ class App extends React.Component {
     });
   }
 
-  // slackLogin(){
-  //   axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
-  //   .then((response)=>{
-  //     console.log("response on client side:", response)
-  //   })
-  // }
+  slackLogin(){
+    axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
+    .then((response)=>{
+      console.log("response on client side:", response)
+    })
+  }
 
   render() {
     switch (this.state.show) {

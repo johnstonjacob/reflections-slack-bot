@@ -26,7 +26,7 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-if (process.env.BUILD === 'prod') app.use('/', express.static(`${__dirname}/../client/build`));
+if (process.env.BUILD === 'prod') app.use(express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());
 app.use(cookieParser());
