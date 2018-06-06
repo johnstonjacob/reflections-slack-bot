@@ -25,9 +25,9 @@ router.get('/', function(req, res) {
     .then((user)=>{
       console.log("RESPONSE FROM SLACK", user.access_token)
       req.session.cookie.isAuthenticated = true;
-      console.log("REQ SESSION", req.session)
+      console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect(url.format({
-             pathname:"/redirect",
+             pathname:"redirect",
              query:user.access_token,
            }));
         // var string = encodeURIComponent('something that would break');
