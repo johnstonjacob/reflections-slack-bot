@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
       console.log("RESPONSE FROM SLACK", user.access_token)
       req.session.cookie.isAuthenticated = true;
       res.redirect(url.format({
-             pathname:"/",
+             pathname:"/checkAuth",
              query:user.access_token,
            }));
         })
