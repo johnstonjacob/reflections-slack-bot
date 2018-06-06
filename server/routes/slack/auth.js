@@ -25,11 +25,16 @@ router.get('/', function(req, res) {
     .then((user)=>{
       console.log("RESPONSE FROM SLACK", user.access_token)
       req.session.cookie.isAuthenticated = true;
-      res.redirect(url.format({
-             pathname:"/checkAuth",
-             query:user.access_token,
-           }));
+      // res.redirect(url.format({
+      //        pathname:"/checkAuth",
+      //        query:user.access_token,
+      //      }));
+        var string = encodeURIComponent('something that would break');
+        res.redirect('/?valid=' + string);
+      });
+
         })
+
     .catch(console.error);
 });
 

@@ -22,7 +22,7 @@ class App extends React.Component {
 
 
   componentDidMount(){
-     axios.get('/checkAuth')
+     axios.get('/slack/auth/redirect')
     .then((response)=>{
       console.log("response:", response.data)
     })
