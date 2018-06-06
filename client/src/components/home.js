@@ -60,8 +60,8 @@ class Home extends React.Component {
   render() {
     return (
       <div className="App">
-        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+        <button onClick={() => { console.log(this.state); }}>Home State</button>
+        <button onClick={() => { console.log(this.props); }}>Home Props</button>
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
@@ -69,6 +69,7 @@ class Home extends React.Component {
         <h1>Home Screen</h1>
 
         <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
 
         <Container>
           <Row>

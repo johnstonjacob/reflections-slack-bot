@@ -6,7 +6,7 @@ dotenv.config({ silent: true });
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   const code = req.query.code;
   const options = {
     method: 'GET',

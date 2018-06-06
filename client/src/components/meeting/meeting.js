@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Input, Label, Container, Col, Row, Button } from 'reactstrap';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import Dropdown from './dropdown';
 
@@ -71,23 +72,15 @@ class Meeting extends React.Component {
   render() {
     return (
       <div className="App">
+
+        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
+        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
-        <button
-          onClick={() => {
-            console.log(this.state);
-          }}
-        >
-          Meeting State
-        </button>
-        <button
-          onClick={() => {
-            console.log(this.props);
-          }}
-        >
-          Meeting Props
-        </button>
+
+        <button onClick={() => { this.props.changeView('home'); }} > Home </button>
 
         <h1>Meeting Screen</h1>
 
@@ -128,3 +121,7 @@ class Meeting extends React.Component {
   }
 }
 export default Meeting;
+
+Meeting.propTypes = {
+  changeView: PropTypes.func.isRequired,
+};
