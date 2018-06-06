@@ -3,6 +3,7 @@ import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
+import axios from 'axios'
 
 class App extends React.Component {
   constructor() {
