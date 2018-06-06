@@ -4,6 +4,7 @@ import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
 import axios from 'axios'
+import $ from 'jquery'
 
 class App extends React.Component {
   constructor() {
