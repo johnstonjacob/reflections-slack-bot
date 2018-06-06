@@ -44,10 +44,12 @@ app.use(session({
   }
 }))
 
+
 app.get('/checkAuth', (req, res)=>{
 	console.log("reqSESSION", req.session, "and Req.query:", req.query)
 	res.send(req.session)
 })
+
 
 
 // app.use(passport.initialize());

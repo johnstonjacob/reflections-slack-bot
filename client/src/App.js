@@ -39,6 +39,9 @@ class App extends React.Component {
    // })
     .then((response)=>{
       console.log("response:", response.data)
+      this.setState({
+        isAuthenticated: response.data.isAuthenticated
+      })
     })
   }
 
