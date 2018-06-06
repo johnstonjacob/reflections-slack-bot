@@ -12,7 +12,7 @@ const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
 // const authRedirect = require('./routes/slack/authRedirect')
 const session = require('express-session')
-const passport = require('passport')
+// const passport = require('passport')
 
 
 dotenv.config({
