@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
       console.log("RESPONSE FROM SLACK", JSON.parse(user))
       let parsed = JSON.parse(user)
       if(parsed.access_token){
-        req.session.cookie.isAuthenticated = true;
+        req.session.isAuthenticated = true;
         console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect("/")
       // res.send("USEROBJECT", user, "REQSESSION:", req.session)
