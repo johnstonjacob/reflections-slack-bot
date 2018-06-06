@@ -3,6 +3,7 @@ import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
+import Response from './components/studentResponse';
 
 class App extends React.Component {
   constructor() {
@@ -34,7 +35,9 @@ class App extends React.Component {
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return <Meeting />;
+        return <Meeting changeView={this.changeView} />;
+      case 'response':
+        return <Response changeView={this.changeView} />;
 
       default:
         return this.state.isAuthenticated ? (
