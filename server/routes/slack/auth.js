@@ -27,8 +27,7 @@ router.get('/', function(req, res) {
       res.redirect(url.format({
              pathname:"/",
              query:user.access_token,
-           });
-       });
+           }));
         })
     .catch(console.error);
 });
