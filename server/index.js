@@ -50,7 +50,7 @@ app.get('/checkAuth', (req, res)=>{
 	res.send(req.session)
 })
 
-app.get('/logout' (req, res) =>{
+app.get('/logout', (req, res) =>{
 	req.session= null;
 })
 
