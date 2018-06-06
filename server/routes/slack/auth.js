@@ -28,8 +28,8 @@ router.get('/', function(req, res) {
       if(parsed.access_token){
         req.session.cookie.isAuthenticated = true;
         console.log("REQ SESSION in AUTH ROUTE", req.session)
-      // res.redirect("/")
-      res.send("USEROBJECT", user, "REQSESSION:", req.session)
+      res.redirect("/")
+      // res.send("USEROBJECT", user, "REQSESSION:", req.session)
     }else{
       res.redirect('/failedLogin')
     }
