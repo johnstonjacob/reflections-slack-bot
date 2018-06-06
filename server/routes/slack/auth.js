@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
         req.session.cookie.isAuthenticated = true;
       console.log("REQ SESSION in AUTH ROUTE", req.session)
       res.redirect(url.format({
-             pathname:"/checkAuth",
+             pathname:"/",
              query:user.access_token,
            }));
     }else{
