@@ -35,14 +35,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({
-  secret: 'keyboard cat',
-  saveUninitialized: true,
-  resave: true,
-  cookie: {
-    maxAge: 3600000
-  }
-}))
+// app.use(session({
+//   secret: 'keyboard cat',
+//   saveUninitialized: true,
+//   resave: true,
+//   cookie: {
+//     maxAge: 3600000
+//   }
+// }))
 
 // app.use(passport.initialize());
 // app.use(passport.session());
