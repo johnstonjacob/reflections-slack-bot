@@ -21,6 +21,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+   
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({

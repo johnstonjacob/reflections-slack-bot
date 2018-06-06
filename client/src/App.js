@@ -19,6 +19,14 @@ class App extends React.Component {
     this.logIn = this.logIn.bind(this);
   }
 
+
+  componentDidMount(){
+     axios.get('/slack/auth/redirect')
+    .then((response)=>{
+      console.log("response")
+    })
+  }
+
   changeView(view) {
     this.setState({
       show: view,
@@ -31,12 +39,12 @@ class App extends React.Component {
     });
   }
 
-  slackLogin(){
-    axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
-    .then((response)=>{
-      console.log("response on client side:", response)
-    })
-  }
+  // slackLogin(){
+  //   axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
+  //   .then((response)=>{
+  //     console.log("response on client side:", response)
+  //   })
+  // }
 
   render() {
     switch (this.state.show) {

@@ -24,8 +24,13 @@ router.get('/', function(req, res) {
     .then((user)=>{
       console.log("RESPONSE FROM SLACK", user)
       req.session.cookie.isAuthenticated = true;
+      // res.redirect(url.format({
+      //        pathname:"/",
+      //        query:user.access_token,
+      //      });
+      //  });
       res.redirect('/redirect')
-      res.send(user)
+      // res.send(user)
         })
     .catch(console.error);
 });
