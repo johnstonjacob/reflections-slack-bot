@@ -20,6 +20,7 @@ class App extends React.Component {
 
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this)
   }
 
 
@@ -57,11 +58,18 @@ class App extends React.Component {
     });
   }
 
-  slackLogin(){
-    axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
-    .then((response)=>{
-      console.log("response on client side:", response)
+  // slackLogin(){
+  //   axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
+  //   .then((response)=>{
+  //     console.log("response on client side:", response)
+  //   })
+  // }
+
+  logOut(){
+    this.setState({
+      isAuthenticated: false;
     })
+    axios.get("/logout")
   }
 
   render() {
@@ -71,7 +79,7 @@ class App extends React.Component {
 
       default:
         return this.state.isAuthenticated ? (
-          <Home changeView={this.changeView} />
+          <Home changeView={this.changeView} logout={this.logOut}/>
         ) : (
           <Login logIn={this.logIn} />
         );
