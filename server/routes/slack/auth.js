@@ -23,8 +23,9 @@ router.get('/', function(req, res) {
   };
   request(options)
     .then((user)=>{
-      console.log("RESPONSE FROM SLACK", user)
-      if(user.access_token){
+      console.log("RESPONSE FROM SLACK", JSON.parse(user))
+      let parsed = JSON.parse(user)
+      if(parsed.access_token){
         req.session.cookie.isAuthenticated = true;
       }
       console.log("REQ SESSION in AUTH ROUTE", req.session)
