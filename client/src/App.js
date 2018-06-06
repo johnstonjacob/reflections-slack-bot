@@ -26,7 +26,7 @@ class App extends React.Component {
   componentDidMount(){
      axios({
       method: 'get',
-      url:'/slack/auth',
+      url:'/checkAuth',
       // credentials: 'include',
    })
    // $.ajax({
