@@ -44,6 +44,12 @@ app.use(session({
   }
 }))
 
+app.get('/', (req, res)=>{
+	console.log("reqBODY", req.body, "and Req.query:", req.query)
+	res.send(req.query)
+})
+
+
 // app.use(passport.initialize());
 // app.use(passport.session());
 

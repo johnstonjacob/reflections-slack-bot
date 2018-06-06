@@ -24,13 +24,11 @@ router.get('/', function(req, res) {
     .then((user)=>{
       console.log("RESPONSE FROM SLACK", user)
       req.session.cookie.isAuthenticated = true;
-      // res.redirect(url.format({
-      //        pathname:"/",
-      //        query:user.access_token,
-      //      });
-      //  });
-      res.redirect('/slack/auth/redirect')
-      // res.send(user)
+      res.redirect(url.format({
+             pathname:"/",
+             query:user.access_token,
+           });
+       });
         })
     .catch(console.error);
 });
