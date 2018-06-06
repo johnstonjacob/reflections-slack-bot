@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
       //        query:user.access_token,
       //      });
       //  });
-      res.redirect('/auth/redirect')
+      res.redirect('/slack/auth/redirect')
       // res.send(user)
         })
     .catch(console.error);
