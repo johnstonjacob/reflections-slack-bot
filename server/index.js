@@ -51,7 +51,7 @@ app.get('/checkAuth', (req, res)=>{
 })
 
 app.get('/logout', (req, res) =>{
-	req.session= null;
+	req.session.destroy();
 })
 
 
