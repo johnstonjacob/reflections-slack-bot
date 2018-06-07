@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     });
   });
 
-  db.saveEmployee();
+  db.saveEmployee("alex", "stuf", 2348);
 
   res.send(cohorts);
 });
