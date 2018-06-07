@@ -18,8 +18,9 @@ router.get('/', (req, res) => {
 
     });
   });
+  console.log("COHORTS:", cohorts);
 
-  db.saveEmployee("alex", "stuf", 2348);
+  db.saveEmployee("rob", "harmonic", 23248);
 
   res.send(cohorts);
 });
