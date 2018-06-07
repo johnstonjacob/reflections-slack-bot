@@ -23,7 +23,7 @@ client.connect();
 
 
 function saveEmployee(empname, slackid, cohort) {
-  const sql = 'INSERT INTO employees(slackid, cohort) VALUES( $1, $2, $3 )';
+  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
 
   client.query(sql, [empname, slackid, cohort], (err, res) => {
     // console.log(res);
