@@ -12,7 +12,6 @@ const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
 const authRedirect = require('./routes/slack/authRedirect.js')
 const session = require('express-session')
-// const passport = require('passport')
 
 
 dotenv.config({
@@ -45,19 +44,17 @@ app.use(session({
 }))
 
 
+//checks whether user is authenticated whenever component is mounted
 app.get('/checkAuth', (req, res)=>{
 	console.log("reqSESSION", req.session, "and Req.query:", req.query)
 	res.send(req.session)
 })
 
+
 app.get('/logout', (req, res) =>{
 	req.session.destroy();
 })
 
-
-
-// app.use(passport.initialize());
-// app.use(passport.session());
 
 app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);

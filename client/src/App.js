@@ -5,7 +5,6 @@ import Login from './components/login';
 import Meeting from './components/meeting/meeting';
 import axios from 'axios'
 axios.defaults.withCredentials = true;
-// import $ from 'jquery'
 
 class App extends React.Component {
   constructor() {
@@ -28,16 +27,7 @@ class App extends React.Component {
      axios({
       method: 'get',
       url:'/checkAuth',
-      // credentials: 'include',
    })
-   // $.ajax({
-   //   url: "/checkAuth",
-   //   method: "get",
-   //   crossDomain: true,
-   //   xhrFields: {
-   //     withCredentials: true
-   //   }
-   // })
     .then((response)=>{
       console.log("response:", response.data)
       this.setState({
@@ -58,12 +48,6 @@ class App extends React.Component {
     });
   }
 
-  // slackLogin(){
-  //   axios.get("https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://206.189.221.89/slack/auth")
-  //   .then((response)=>{
-  //     console.log("response on client side:", response)
-  //   })
-  // }
 
   logOut(){
     this.setState({
