@@ -18,7 +18,7 @@ const pool = new Pool({
 
 
 function saveEmployee(id, empName, slackId, cohort) {
-  pool.query(`INSERT INTO employees (id, empname, slackid, cohort) values(${id},${empName}, ${slackId}, ${cohort})`);
+  pool.query(`INSERT INTO employees (id, empname, slackid, cohort) VALUES (${id}, ${empName}, ${slackId}, ${cohort})`);
 
 }
 
@@ -38,10 +38,10 @@ const client = new Client({
 });
 client.connect();
 
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res);
-  client.end();
-});
+// client.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res);
+//   client.end();
+// });
 
 
 module.exports.test = test;
