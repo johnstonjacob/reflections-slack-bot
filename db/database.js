@@ -17,8 +17,8 @@ const pool = new Pool({
 // });
 
 
-function saveEmployee(i, empNam, slackI, cohor) {
-  pool.query(`INSERT INTO employees (id, empname, slackid, cohort) VALUES (${i}, ${empNam}, ${slackI}, ${cohor})`);
+function saveEmployee(empName, slackId, cohort) {
+  pool.query('INSERT INTO employees (id, empname, slackid, cohort) VALUES (?, ?, ?)', [empName, slackId, cohort]);
 }
 function test() {
   pool.query('SELECT * from employees', (err, res) => {
