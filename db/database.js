@@ -9,10 +9,10 @@ const pool = new Pool({
   connectionString,
 });
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res);
-  pool.end();
-});
+// pool.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res);
+//   pool.end();
+// });
 
 function test() {
   pool.query('SELECT * from employees', (err, res) => {
@@ -24,6 +24,7 @@ function test() {
       console.log(res);
 	  }
   });
+  pool.end();
 }
 
 const client = new Client({
