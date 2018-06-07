@@ -65,12 +65,14 @@ class Home extends React.Component {
         <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
         <button onClick={() => this.props.logout()}>Logout</button>
 
+
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
         <h1>Home Screen</h1>
 
         <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
 
         <Container>
           <Row>
