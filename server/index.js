@@ -45,9 +45,6 @@ app.use(session({
 
 app.get('/test', (req, res) => {
   db.test()
-    .then((response) => {
-      res.send(response);
-    });
 });
 
 

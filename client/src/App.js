@@ -60,12 +60,9 @@ class App extends React.Component {
   }
 
   test() {
-    axios.get('/test')
-      .then((response) => {
-        console.log(response);
-      });
+    console.log('AM I WorkING');
+    axios.get('/test');
   }
-
   render() {
     switch (this.state.show) {
       case 'meeting':
