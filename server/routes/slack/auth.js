@@ -1,8 +1,8 @@
 const express = require('express');
 const request = require('request-promise-native');
 const dotenv = require('dotenv');
-const session = require('express-session');
-const url = require('url');
+// const session = require('express-session');
+// const url = require('url');
 
 
 dotenv.config({

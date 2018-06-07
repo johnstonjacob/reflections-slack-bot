@@ -1,5 +1,6 @@
 const express = require('express');
 const slackbot = require('../../../slackbot/index');
+const db = require('../../../db/database.js');
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.get('/', (req, res) => {
     });
   });
 
+  db.saveEmployee('Rob', 'SLACKK&EBS', 562);
 
   res.send(cohorts);
 });

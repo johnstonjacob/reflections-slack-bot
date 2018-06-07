@@ -16,9 +16,17 @@ const pool = new Pool({
 //   pool.end();
 // });
 
+
+function saveEmployee(empName, slackId, cohort) {
+  // pool.query('INSERT INTO "public"."employees"("empname", "slackid", "cohort") values($1, $2, $3)', ["rob", "thing", 34]);
+
+
+pool.query(`INSERT INTO employees ("empname", "slackid", "cohort") values(${empName}, ${slackId}, ${cohort})`);
+}
+
 function test() {
   pool.query('SELECT * from employees', (err, res) => {
-	  console.log(res);
+	  // console.log(res);
 	  if (err) {
       console.log(err);
 	  } else {
@@ -39,6 +47,7 @@ client.query('SELECT NOW()', (err, res) => {
 
 
 module.exports.test = test;
+module.exports.saveEmployee = saveEmployee;
 // const { Pool, Client } = require('pg')
 // const connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
 

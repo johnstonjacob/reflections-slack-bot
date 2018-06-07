@@ -44,7 +44,7 @@ app.use(session({
 }));
 
 app.get('/test', (req, res) => {
-  db.test()
+  db.test();
 });
 
 
