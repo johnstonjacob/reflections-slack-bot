@@ -1,46 +1,55 @@
 import React from 'react';
-import { Form, FormGroup, Input, Label, Container, Col, Row, Button } from 'reactstrap';
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Container,
+  Col,
+  Row,
+  Button,
+} from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import Dropdown from './dropdown';
+// import Dropdown from './dropdown';
 
 class Meeting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: '',
+      student: this.props.student.split(',')[0],
       notes: '',
       message: '',
       students: [],
       dropdownOpen: false,
     };
-    this.studentChange = this.studentChange.bind(this);
+    // this.studentChange = this.studentChange.bind(this);
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
-    this.getStudents = this.getStudents.bind(this);
-    this.toggle = this.toggle.bind(this);
+    // this.getStudents = this.getStudents.bind(this);
+    // this.toggle = this.toggle.bind(this);
 
-    this.getStudents();
+    // this.getStudents();
   }
-  getStudents() {
-    const options = { method: 'GET', url: '/dash/getusers' };
+  // getStudents() {
+  //   const options = { method: 'GET', url: '/dash/getusers' };
 
-    axios(options).then(res => this.setState({ students: res.data }));
-  }
+  //   axios(options).then(res => this.setState({ students: res.data }));
+  // }
 
-  toggle() {
-    this.setState(prevState => ({
-      dropdownOpen: !prevState.dropdownOpen,
-    }));
-  }
+  // toggle() {
+  //   this.setState(prevState => ({
+  //     dropdownOpen: !prevState.dropdownOpen,
+  //   }));
+  // }
 
-  studentChange(e) {
-    this.setState({
-      student: e.target.value,
-    });
-  }
+  // studentChange(e) {
+  //   this.setState({
+  //     student: e.target.value,
+  //   });
+  // }
 
 
   notesChange(e) {
@@ -82,10 +91,10 @@ class Meeting extends React.Component {
 
         <button onClick={() => { this.props.changeView('home'); }} > Home </button>
 
-        <h1>Meeting Screen</h1>
+        <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
 
         <Container>
-          <Dropdown students={this.state.students} />
+          {/* <Dropdown students={this.state.students} /> */}
           <Form>
             <FormGroup>
               <Label for="exampleText">Notes</Label>
@@ -124,4 +133,5 @@ export default Meeting;
 
 Meeting.propTypes = {
   changeView: PropTypes.func.isRequired,
+  student: PropTypes.string.isRequired,
 };

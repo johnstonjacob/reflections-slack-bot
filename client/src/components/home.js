@@ -12,9 +12,9 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allStudents: [],
       cohorts: [],
       members: [],
-      allStudents: [],
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -56,12 +56,13 @@ class Home extends React.Component {
     this.setState({ members: membersArray });
   }
 
-
   render() {
     return (
       <div className="App">
-        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+
+        <button onClick={() => { console.log(this.state); }}>Home State</button>
+        <button onClick={() => { console.log(this.props); }}>Home Props</button>
+
         <button onClick={() => this.props.logout()}>Logout</button>
 
 
@@ -94,7 +95,9 @@ class Home extends React.Component {
               <h1>Students</h1>
               {this.state.members.map(person => (
                 <Col key={person[0]}>
-                  <Button outline color="success">{person[1]}</Button>
+                  <Button outline color="success" onClick={this.props.getStudent} value={person}>
+                    {person[1]}
+                  </Button>
                 </Col>
               ))}
             </Col>
@@ -108,6 +111,9 @@ class Home extends React.Component {
 
 Home.propTypes = {
   changeView: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  getStudent: PropTypes.func.isRequired,
 };
+
 
 export default Home;
