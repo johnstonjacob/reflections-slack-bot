@@ -16,11 +16,16 @@ const pool = new Pool({
 //   pool.end();
 // });
 
+onst client = new Client({
+  connectionString,
+});
+client.connect();
+
 
 function saveEmployee(empName, slackId, cohort) {
   const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( "alex", "hohn", 123 )';
 
-  pool.query(sql, (err, res) => {
+  client.query(sql, (err, res) => {
     // console.log(res);
     if (err) {
       console.log(err);
@@ -32,7 +37,7 @@ function saveEmployee(empName, slackId, cohort) {
 
   function test() {
 
-  pool.query('SELECT * from employees', (err, res) => {
+  client.query('SELECT * from employees', (err, res) => {
 	  // console.log(res);
 	  if (err) {
       console.log(err);
@@ -43,10 +48,6 @@ function saveEmployee(empName, slackId, cohort) {
     })
 }
 
-const client = new Client({
-  connectionString,
-});
-client.connect();
 
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
