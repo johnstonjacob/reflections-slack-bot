@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
     });
   });
-  console.log("COHORTS:", cohorts[0].members);
+  console.log("COHORTS:", cohorts[0].cohort.members);
 
 
 
