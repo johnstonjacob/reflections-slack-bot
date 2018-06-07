@@ -18,9 +18,20 @@ const pool = new Pool({
 
 
 function saveEmployee(empName, slackId, cohort) {
-  pool.query('INSERT INTO employees (id, empname, slackid, cohort) VALUES (?, ?, ?)', [empName, slackId, cohort]);
+  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( ?, ?, ? )';
+
+  pool.query(sql, [empName, slackId, cohort], (err, res) => {
+    // console.log(res);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
 }
-function test() {
+
+  function test() {
+
   pool.query('SELECT * from employees', (err, res) => {
 	  // console.log(res);
 	  if (err) {
@@ -28,7 +39,8 @@ function test() {
 	  } else {
       console.log(res);
 	  }
-  });
+
+    })
 }
 
 const client = new Client({
