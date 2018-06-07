@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
   cohorts.forEach((item) => {
     const cohortName = item.cohort.name;
     item.cohort.members.forEach((member) => {
-      db.saveEmployee(member, cohortName);
+      db.saveEmployee("placeholder", member, cohortName);
     });
   });
 
