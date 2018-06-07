@@ -71,6 +71,7 @@ class Home extends React.Component {
         <h1>Home Screen</h1>
 
         <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
 
         <Container>
           <Row>

@@ -4,6 +4,7 @@ import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
 import axios from 'axios'
+import Response from './components/studentResponse';
 axios.defaults.withCredentials = true;
 
 class App extends React.Component {
@@ -59,7 +60,9 @@ class App extends React.Component {
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return <Meeting />;
+        return <Meeting changeView={this.changeView} />;
+      case 'response':
+        return <Response changeView={this.changeView} />;
 
       default:
         return this.state.isAuthenticated ? (
