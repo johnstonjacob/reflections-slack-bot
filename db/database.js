@@ -14,8 +14,9 @@ pool.query('SELECT NOW()', (err, res) => {
   pool.end();
 });
 
-function test(callback) {
+function test() {
   pool.query('SELECT * from employees', (err, res) => {
+    console.log('TESTINGAHDKASHDAS');
 	  console.log(res);
 	  if (err) {
       console.log(err);
