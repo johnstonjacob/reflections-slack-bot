@@ -18,9 +18,9 @@ const pool = new Pool({
 
 
 function saveEmployee(empName, slackId, cohort) {
-  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( ?, ?, ? )';
+  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( "alex", "hohn", 123 )';
 
-  pool.query(sql, [empName, slackId, cohort], (err, res) => {
+  pool.query(sql, (err, res) => {
     // console.log(res);
     if (err) {
       console.log(err);
