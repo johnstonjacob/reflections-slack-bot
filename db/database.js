@@ -16,7 +16,7 @@ const pool = new Pool({
 //   pool.end();
 // });
 
-onst client = new Client({
+const client = new Client({
   connectionString,
 });
 client.connect();
