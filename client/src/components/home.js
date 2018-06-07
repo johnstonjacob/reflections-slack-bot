@@ -21,6 +21,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+   
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({
@@ -60,8 +61,10 @@ class Home extends React.Component {
   render() {
     return (
       <div className="App">
-        <button onClick={() => { console.log(this.state); }}>Home State</button>
-        <button onClick={() => { console.log(this.props); }}>Home Props</button>
+        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
+        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+        <button onClick={() => this.props.logout()}>Logout</button>
+
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
