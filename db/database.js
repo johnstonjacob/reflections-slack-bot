@@ -1,6 +1,8 @@
 const { Pool, Client } = require('pg');
 
 const connectionString = 'postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack';
+// const connectionString = process.env.POSTGRESQL_AUTH;
+
 // . postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack
 
 // const schema = require('./Schema1.sql');
@@ -16,7 +18,6 @@ const pool = new Pool({
 
 function test() {
   pool.query('SELECT * from employees', (err, res) => {
-    console.log('TESTINGAHDKASHDAS');
 	  console.log(res);
 	  if (err) {
       console.log(err);
@@ -24,7 +25,6 @@ function test() {
       console.log(res);
 	  }
   });
-  pool.end();
 }
 
 const client = new Client({

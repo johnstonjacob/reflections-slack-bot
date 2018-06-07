@@ -21,7 +21,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-   
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({
@@ -105,6 +104,7 @@ class Home extends React.Component {
 
 Home.propTypes = {
   changeView: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 export default Home;

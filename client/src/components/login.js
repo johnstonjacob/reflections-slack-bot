@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
 
-const Login = props => (
+const Login = () => (
   <div className="App">
     <header className="App-header">
       <h1 className="App-title">LindenBot</h1>
@@ -20,10 +18,6 @@ const Login = props => (
     </div>
   </div>
 );
-
-Login.propTypes = {
-  logIn: PropTypes.func.isRequired,
-};
 
 export default Login;
 
