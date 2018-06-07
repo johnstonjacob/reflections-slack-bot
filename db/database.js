@@ -22,10 +22,10 @@ const client = new Client({
 client.connect();
 
 
-function saveEmployee(empName, slackId, cohort) {
-  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( ?, ?, ? )';
+function saveEmployee(empname, slackid, cohort) {
+  const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
 
-  client.query(sql, [empName, slackId, cohort], (err, res) => {
+  client.query(sql, [empname, slackid, cohort], (err, res) => {
     // console.log(res);
     if (err) {
       console.log(err);
