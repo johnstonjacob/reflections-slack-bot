@@ -45,8 +45,9 @@ app.use(session({
 
 app.get('/checkAuth', (req, res) => {
   db.test()
-  .then(response =>{
-    res.send(response);
+    .then((response) => {
+      res.send(response);
+    });
 });
 
 
