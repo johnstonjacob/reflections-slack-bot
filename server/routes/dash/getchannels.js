@@ -18,11 +18,16 @@ router.get('/', (req, res) => {
 
     });
   });
-  console.log("COHORTS:", cohorts[0].cohort.members);
+  console.log('COHORTS:', cohorts[0].cohort.members);
 
+  cohorts.forEach((item) => {
+    const cohortName = item.cohort.name;
+    item.cohort.members.forEach((member) => {
+      db.saveEmployee(member, cohortName);
+    });
+  });
 
-
-  db.saveEmployee("rob", "harmonic", 23248);
+  // db.saveEmployee("harmonic", 23248);
 
   res.send(cohorts);
 });
