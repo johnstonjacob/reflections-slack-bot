@@ -56,17 +56,17 @@ class Meeting extends React.Component {
   }
 
   submitMessage() {
-    console.log(`Student Name: ${this.state.student}`);
-    console.log(`Notes: ${this.state.notes}`);
-    console.log(`Message: ${this.state.message}`);
+    // console.log(`Student Name: ${this.state.student}`);
+    // console.log(`Notes: ${this.state.notes}`);
+    // console.log(`Message: ${this.state.message}`);
     axios
       .post('/dash/postmessage', {
         student: this.state.student,
         notes: this.state.notes,
         message: this.state.message,
-      })
-      .then(console.log)
-      .catch(console.error);
+      });
+    // .then(console.log)
+    // .catch(console.error);
   }
 
   render() {

@@ -21,7 +21,6 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-   
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({
@@ -94,7 +93,9 @@ class Home extends React.Component {
             <Col>
               <h1>Students</h1>
               {this.state.members.map(person => (
-                <h4 key={person[0]}>{person[1]}</h4>
+                <Col key={person[0]}>
+                  <Button outline color="success">{person[1]}</Button>
+                </Col>
               ))}
             </Col>
           </Row>
