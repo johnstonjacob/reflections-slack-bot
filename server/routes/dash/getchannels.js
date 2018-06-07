@@ -18,7 +18,9 @@ router.get('/', (req, res) => {
 
     });
   });
-  console.log("COHORTS:", cohorts);
+  console.log("COHORTS:", cohorts[0].members);
+
+
 
   db.saveEmployee("rob", "harmonic", 23248);
 
