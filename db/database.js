@@ -1,14 +1,60 @@
-const pg = require('pg');
-const connectionString = process.env.DATABASE_URL;
+const { Pool, Client } = require('pg');
+
+const connectionString = 'postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack';
 // . postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack
 
-const schema = require('./Schema1.sql')
+// const schema = require('./Schema1.sql');
 
-const client = new pg.Client(connectionString);
+const pool = new Pool({
+  connectionString,
+});
+
+pool.query('SELECT NOW()', (err, res) => {
+  console.log(err, res);
+  pool.end();
+});
+
+function test(callback) {
+  pool.query('SELECT * from employees', (err, res) => {
+	  console.log(res);
+	  if (err) {
+      console.log(err);
+	  } else {
+      console.log(res);
+	  }
+  });
+}
+
+const client = new Client({
+  connectionString,
+});
 client.connect();
-const query = client.query(schema);
-	/*
-	Enter the query here: e.g.
-	'CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
-	*/
-query.on('end', () => { client.end(); });
+
+client.query('SELECT NOW()', (err, res) => {
+  console.log(err, res);
+  client.end();
+});
+
+
+module.exports.test = test;
+// const { Pool, Client } = require('pg')
+// const connectionString = 'postgresql://dbuser:secretpassword@database.server.com:3211/mydb'
+
+// const pool = new Pool({
+//   connectionString: connectionString,
+// })
+
+// pool.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res)
+//   pool.end()
+// })
+
+// const client = new Client({
+//   connectionString: connectionString,
+// })
+// client.connect()
+
+// client.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res)
+//   client.end()
+// })

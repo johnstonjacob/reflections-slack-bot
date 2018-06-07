@@ -18,6 +18,8 @@ router.get('/', (req, res) => {
     });
   });
 
+  saveCohorts(cohorts)
+
   res.send(cohorts);
 });
 
