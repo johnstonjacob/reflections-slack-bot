@@ -15,18 +15,17 @@ router.get('/', (req, res) => {
   Object.keys(data).forEach((item) => {
     cohorts.push({
       id: item,
-
       cohort: data[item],
-
-
     });
   });
+
+
   console.log('COHORTS:', cohorts[0].cohort.members);
 
   cohorts.forEach((item) => {
     const cohortName = item.cohort.name;
     item.cohort.members.forEach((member) => {
-      db.saveEmployee("placeholder", member, cohortName);
+      db.saveEmployee(users[member], member, cohortName);
     });
   });
 
