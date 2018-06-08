@@ -21,7 +21,6 @@ const client = new Client({
 });
 client.connect();
 
-
 function saveEmployee(empname, slackid, cohort) {
   const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
 
@@ -37,7 +36,7 @@ function saveEmployee(empname, slackid, cohort) {
 
 function saveMeetings(notes, message, empslackid, meetdate) {
   const sql = 'INSERT INTO meetings(notes, message, empslackid, meetdate) VALUES( $1, $2, $3, $4)';
- 
+
   client.query(sql, [notes, message, empslackid, meetdate], (err, res) => {
     // console.log(res);
     if (err) {
@@ -48,21 +47,18 @@ function saveMeetings(notes, message, empslackid, meetdate) {
   });
 }
 
-
-
 function test() {
-
   client.query('SELECT * from meetings', (err, res) => {
-	  // console.log(res);
-	  if (err) {
+    // console.log(res);
+    if (err) {
       console.log(err);
-	  } else {
+    } else {
       console.log(res);
-	  }
-
-    })
+    }
+  });
 }
 
+<<<<<<< HEAD
 // Adds a response to the response table
 // Slack response => response
 // Resdate = another Date.now();
@@ -96,6 +92,8 @@ function updateMeetingRes(meetid, resid) {
 
 
 
+=======
+>>>>>>> dev
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
 //   client.end();
