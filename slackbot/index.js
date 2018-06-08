@@ -54,14 +54,12 @@ setInterval(updateInfo, 1800000);
 
 //TODO write db query
 
-// rtm.on('slack_event', (type, event) => {
-//   console.log(event);
-//   if (type === 'message') {
-//     if (event.text === 'hello') {
-//       rtm.sendMessage(`howdy, ${userList[event.user]}`, event.channel);
-//     }
-//   }
-// });
+rtm.on('slack_event', (type, event) => {
+  // console.log(event);
+  if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
+    rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
+  }
+});
 
 module.exports.postMessage = postMessage;
 module.exports.getUsers = getUsers;
