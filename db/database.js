@@ -21,6 +21,7 @@ const client = new Client({
 });
 client.connect();
 
+
 function saveEmployee(empname, slackid, cohort) {
   const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
 
@@ -36,7 +37,7 @@ function saveEmployee(empname, slackid, cohort) {
 
 function saveMeetings(notes, message, empslackid, meetdate) {
   const sql = 'INSERT INTO meetings(notes, message, empslackid, meetdate) VALUES( $1, $2, $3, $4)';
-
+ 
   client.query(sql, [notes, message, empslackid, meetdate], (err, res) => {
     // console.log(res);
     if (err) {
@@ -47,18 +48,21 @@ function saveMeetings(notes, message, empslackid, meetdate) {
   });
 }
 
+
+
 function test() {
-  client.query('SELECT * from meetings', (err, res) => {
-    // console.log(res);
-    if (err) {
+
+  client.query('SELECT * from response', (err, res) => {
+	  // console.log(res);
+	  if (err) {
       console.log(err);
-    } else {
+	  } else {
       console.log(res);
-    }
-  });
+	  }
+
+    })
 }
 
-<<<<<<< HEAD
 // Adds a response to the response table
 // Slack response => response
 // Resdate = another Date.now();
@@ -90,15 +94,36 @@ function updateMeetingRes(meetid, resid) {
 }
 
 
+// Identifies which meetingID to connect the response to.
+// empid = the employee slackid of the person currently responding
+// The return value will then be used to identify where to connect
+// the resid value (from the newly generated response)
+
+//I'm going to need help with the callback.
+
+function findLastMeeting(empid, callback) {
+  const sql = 'SELECT id FROM MEETINGS WHERE (empslackid = $1 AND resid IS NULL);';
+
+  client.query(sql, [empid], (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+      callback(res)
+    }
+  })
+}
 
 
-=======
->>>>>>> dev
+
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
 //   client.end();
 // });
 
+module.exports.addResponse = addResponse;
+module.exports.updateMeetingRes = updateMeetingRes;
+module.exports.findLastMeeting = findLastMeeting;
 module.exports.saveMeetings = saveMeetings;
 module.exports.test = test;
 module.exports.saveEmployee = saveEmployee;

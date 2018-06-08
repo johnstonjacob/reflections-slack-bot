@@ -1,5 +1,6 @@
 const { WebClient, RTMClient } = require('@slack/client');
 const dotenv = require('dotenv');
+const db = require('../db/database.js')
 
 dotenv.config({ silent: true });
 const token = process.env.BOT_OAUTH;
@@ -55,8 +56,9 @@ setInterval(updateInfo, 1800000);
 //TODO write db query
 
 rtm.on('slack_event', (type, event) => {
-  console.log([event][0]);
+  console.log(event);
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
+    db.addResponse(event.text, Date.now(), "placeholder")
     rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
   }
 });
