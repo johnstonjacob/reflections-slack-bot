@@ -12,9 +12,9 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      allStudents: [],
       cohorts: [],
       members: [],
-      allStudents: [],
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -56,12 +56,13 @@ class Home extends React.Component {
     this.setState({ members: membersArray });
   }
 
-
   render() {
     return (
       <div className="App">
-        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+
+        <button onClick={() => { console.log(this.state); }}>Home State</button>
+        <button onClick={() => { console.log(this.props); }}>Home Props</button>
+
         <button onClick={() => this.props.logout()}>Logout</button>
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
@@ -91,7 +92,11 @@ class Home extends React.Component {
             <Col>
               <h1>Students</h1>
               {this.state.members.map(person => (
-                <h4 key={person[0]}>{person[1]}</h4>
+                <Col key={person[0]}>
+                  <Button outline color="success" onClick={this.props.getStudent} value={person}>
+                    {person[1]}
+                  </Button>
+                </Col>
               ))}
             </Col>
           </Row>
@@ -105,6 +110,8 @@ class Home extends React.Component {
 Home.propTypes = {
   changeView: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  getStudent: PropTypes.func.isRequired,
 };
+
 
 export default Home;
