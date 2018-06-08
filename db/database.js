@@ -35,9 +35,24 @@ function saveEmployee(empname, slackid, cohort) {
   });
 }
 
+function saveMeetings(notes, message, empslackid, meetdate) {
+  const sql = 'INSERT INTO meetings(notes, message, empslackid, meetdate) VALUES( $1, $2, $3, $4)';
+ 
+  client.query(sql, [notes, message, empslackid, meetdate], (err, res) => {
+    // console.log(res);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  });
+}
+
+
+
 function test() {
 
-  client.query('SELECT * from employees', (err, res) => {
+  client.query('SELECT * from meetings', (err, res) => {
 	  // console.log(res);
 	  if (err) {
       console.log(err);
@@ -54,7 +69,7 @@ function test() {
 //   client.end();
 // });
 
-
+module.exports.saveMeetings = saveMeetings;
 module.exports.test = test;
 module.exports.saveEmployee = saveEmployee;
 // const { Pool, Client } = require('pg')
