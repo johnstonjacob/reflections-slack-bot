@@ -27,7 +27,7 @@ class App extends React.Component {
   }
 
 
-  }
+  
 
   // when component mounts, checks server authentication
   componentDidMount() {
