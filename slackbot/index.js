@@ -60,7 +60,7 @@ rtm.on('slack_event', (type, event) => {
     console.log(event);
     let meetId;
     db.findLastMeeting(event.user, (res)=>{
-      console.log(res);
+      console.log("FIND LAST MEETING:", res);
     })
     db.addResponse(event.text, Date.now(), 20)
     rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
