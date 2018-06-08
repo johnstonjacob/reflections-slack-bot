@@ -88,7 +88,6 @@ class App extends React.Component {
 
       default:
         return this.state.isAuthenticated ? (
-          <Home changeView={this.changeView} logout={this.logOut} />
           <Home
             changeView={this.changeView}
             logout={this.logOut}
