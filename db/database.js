@@ -63,6 +63,38 @@ function test() {
     })
 }
 
+// Adds a response to the response table
+// Slack response => response
+// Resdate = another Date.now();
+// MeetId = id in meetings, foreign key in response
+function addResponse(response, resdate, meetid) {
+  const sql = 'INSERT INTO response(restext, resdate, meetid) VALUES( $1, $2, $3)';
+
+  client.query(sql, [response, resdate, meetid], (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  })
+}
+
+//Can only be called after the response table has been updated.
+//resid is "id" in the response table, and is a foreign key in meetings
+function updateMeetingRes(meetid, resid) {
+  const sql = 'UPDATE meetings SET resid=($1) WHERE id=($2)';
+
+  client.query(sql, [resid, meetid], (err, res) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(res);
+    }
+  })
+}
+
+
+
 
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
