@@ -1,6 +1,5 @@
 CREATE DATABASE plumstack;
 
-
 CREATE SCHEMA plumschema;
 
 USE plumschema

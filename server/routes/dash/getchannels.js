@@ -6,8 +6,11 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const data = slackbot.getChannels();
+  const users = slackbot.getUsers();
   const cohorts = [];
-  // console.log(data);
+  console.log(data);
+  console.log(users)
+
 
   Object.keys(data).forEach((item) => {
     cohorts.push({
