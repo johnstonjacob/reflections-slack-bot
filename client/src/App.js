@@ -1,10 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting/meeting';
-import axios from 'axios'
 import Response from './components/studentResponse';
+
 axios.defaults.withCredentials = true;
 
 class App extends React.Component {
@@ -13,60 +14,76 @@ class App extends React.Component {
 
     this.state = {
       show: 'home',
-      isAuthenticated: false,
-      // cohorts: [33, 34, 35],
-      // students: ['a', 'b', 'c'],
+      isAuthenticated: true,
+      student: '',
     };
 
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
-    this.logOut = this.logOut.bind(this)
+    this.logOut = this.logOut.bind(this);
+    this.getStudent = this.getStudent.bind(this);
   }
 
-
-  componentDidMount(){
-     axios({
+  // when component mounts, checks server authentication
+  componentDidMount() {
+    axios({
       method: 'get',
-      url:'/checkAuth',
-   })
-    .then((response)=>{
-      console.log("response:", response.data)
-      this.setState({
-        isAuthenticated: response.data.isAuthenticated
-      })
+      url: '/checkAuth',
     })
+      .then((response) => {
+        // console.log('response:', response.data);
+        this.setState({
+          isAuthenticated: response.data.isAuthenticated,
+        });
+      });
   }
 
+  // when student is selected, changes state to the ID of selected student
+  getStudent(e) {
+    this.setState({
+      student: e.target.value,
+      show: 'meeting',
+    });
+  }
+
+  // function to change current view
   changeView(view) {
     this.setState({
       show: view,
     });
   }
 
+
+  // helper function for logging in during development
   logIn() {
     this.setState({
       isAuthenticated: true,
     });
   }
 
-
-  logOut(){
+  // function to log out of session
+  logOut() {
     this.setState({
-      isAuthenticated: false
-    })
-    axios.get("/logout")
+      isAuthenticated: false,
+    });
+    axios.get('/logout');
   }
 
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return <Meeting changeView={this.changeView} />;
+        return <Meeting changeView={this.changeView} student={this.state.student} />;
       case 'response':
         return <Response changeView={this.changeView} />;
 
       default:
         return this.state.isAuthenticated ? (
-          <Home changeView={this.changeView} logout={this.logOut}/>
+          <Home
+            changeView={this.changeView}
+            logout={this.logOut}
+            student={this.state.student}
+            getStudent={this.getStudent}
+          />
         ) : (
           <Login logIn={this.logIn} />
         );
@@ -76,6 +93,3 @@ class App extends React.Component {
 
 export default App;
 
-// this.state.isAuthenticated ?
-//             <Home /> :
-//             <Login logIn={this.logIn} />
