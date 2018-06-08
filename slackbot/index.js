@@ -58,6 +58,10 @@ setInterval(updateInfo, 1800000);
 rtm.on('slack_event', (type, event) => {
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
     console.log(event);
+    let meetId;
+    db.findLastMeeting(event.user, (res)=>{
+      console.log(res);
+    })
     db.addResponse(event.text, Date.now(), 20)
     rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
   }
