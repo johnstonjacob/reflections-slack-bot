@@ -39,14 +39,14 @@ class Meeting extends React.Component {
   studentChange(e) {
     this.setState({
       student: e.target.value,
-    }, ()=> console.log("new student state", this.state.student) );
+    }, ()=> {console.log("new student state", this.state.student)} );
   }
 
 
   notesChange(e) {
     this.setState({
       notes: e.target.value,
-    });
+    }, () => {console.log("new notes state", this.state.notes)});
   }
 
   messageChange(e) {
