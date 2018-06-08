@@ -45,6 +45,7 @@ class Meeting extends React.Component {
   //   }));
   // }
 
+
   // studentChange(e) {
   //   this.setState({
   //     student: e.target.value,
@@ -55,7 +56,7 @@ class Meeting extends React.Component {
   notesChange(e) {
     this.setState({
       notes: e.target.value,
-    });
+    }, () => {console.log("new notes state", this.state.notes)});
   }
 
   messageChange(e) {

@@ -1,8 +1,8 @@
 CREATE DATABASE plumstack;
 
-\connect plumstack
-
 CREATE SCHEMA plumschema;
+
+USE plumschema
 
 CREATE TABLE plumschema.employees (
   id serial PRIMARY KEY,

@@ -64,8 +64,6 @@ class Home extends React.Component {
         <button onClick={() => { console.log(this.props); }}>Home Props</button>
 
         <button onClick={() => this.props.logout()}>Logout</button>
-
-
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>

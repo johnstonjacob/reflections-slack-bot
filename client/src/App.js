@@ -21,8 +21,12 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.test = this.test.bind(this);
     this.getStudent = this.getStudent.bind(this);
   }
+
+
+  
 
   // when component mounts, checks server authentication
   componentDidMount() {
@@ -31,7 +35,7 @@ class App extends React.Component {
       url: '/checkAuth',
     })
       .then((response) => {
-        // console.log('response:', response.data);
+        console.log('response:', response.data);
         this.setState({
           isAuthenticated: response.data.isAuthenticated,
         });
@@ -61,6 +65,7 @@ class App extends React.Component {
     });
   }
 
+
   // function to log out of session
   logOut() {
     this.setState({
@@ -69,6 +74,10 @@ class App extends React.Component {
     axios.get('/logout');
   }
 
+  test() {
+    console.log('AM I WorkING');
+    axios.get('/test');
+  }
   render() {
     switch (this.state.show) {
       case 'meeting':
@@ -85,7 +94,7 @@ class App extends React.Component {
             getStudent={this.getStudent}
           />
         ) : (
-          <Login logIn={this.logIn} />
+          <Login logIn={this.logIn} test={this.test} />
         );
     }
   }
