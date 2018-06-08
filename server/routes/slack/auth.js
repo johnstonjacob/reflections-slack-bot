@@ -1,15 +1,14 @@
 const express = require('express');
 const request = require('request-promise-native');
 const dotenv = require('dotenv');
-// const session = require('express-session');
-// const url = require('url');
-
+const session = require('express-session');
+const url = require('url');
+const router = express.Router();
+// const request = require('request');
 
 dotenv.config({
   silent: true,
 });
-
-const router = express.Router();
 
 
 router.get('/', (req, res) => {

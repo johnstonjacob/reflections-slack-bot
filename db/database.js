@@ -35,7 +35,7 @@ function saveEmployee(empname, slackid, cohort) {
   });
 }
 
-  function test() {
+function test() {
 
   client.query('SELECT * from employees', (err, res) => {
 	  // console.log(res);
