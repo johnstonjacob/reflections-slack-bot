@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   Object.keys(data).forEach((item) => {
     users.push([item, data[item]]);
   });
-  console.log("USERS", users)
+  // console.log('USERS', users);
   res.send(users);
 });
 
