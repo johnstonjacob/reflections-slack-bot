@@ -37,7 +37,6 @@ function saveEmployee(empname, slackid, cohort) {
 
 function saveMeetings(notes, message, empslackid, meetdate) {
   const sql = 'INSERT INTO meetings(notes, message, empslackid, meetdate) VALUES( $1, $2, $3, $4)';
- 
   client.query(sql, [notes, message, empslackid, meetdate], (err, res) => {
     // console.log(res);
     if (err) {

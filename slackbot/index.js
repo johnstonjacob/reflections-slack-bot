@@ -57,12 +57,9 @@ setInterval(updateInfo, 1800000);
 
 rtm.on('slack_event', (type, event) => {
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
-    console.log(event);
     let meetId;
     db.findLastMeeting(event.user, (res) => {
-      console.log('FIND LAST MEETING:', res);
       meetId = res.rows[res.rows.length - 1].id;
-      console.log("THIS IS THE MEETID", meetId);
       db.addResponse(event.text, Date.now(), meetId);
     });
     rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
