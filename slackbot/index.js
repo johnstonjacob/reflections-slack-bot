@@ -1,6 +1,6 @@
 const { WebClient, RTMClient } = require('@slack/client');
 const dotenv = require('dotenv');
-const db = require('../db/database.js')
+const db = require('../db/database.js');
 
 dotenv.config({ silent: true });
 const token = process.env.BOT_OAUTH;
@@ -17,7 +17,7 @@ const channelList = {};
 function postMessage(text, user = 'UAYRAJH8W') {
   web.im
     .open({ user })
-    .then((data) => rtm.sendMessage(text, data.channel.id).catch(console.error))
+    .then(data => rtm.sendMessage(text, data.channel.id).catch(console.error))
     .catch(console.error);
 }
 
@@ -53,16 +53,18 @@ function updateInfo() {
 updateInfo();
 setInterval(updateInfo, 1800000);
 
-//TODO write db query
+// TODO write db query
 
 rtm.on('slack_event', (type, event) => {
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
     console.log(event);
     let meetId;
-    db.findLastMeeting(event.user, (res)=>{
-      console.log("FIND LAST MEETING:", res);
-    })
-    db.addResponse(event.text, Date.now(), 20)
+    db.findLastMeeting(event.user, (res) => {
+      console.log('FIND LAST MEETING:', res);
+      meetId = res.rows[res.rows.length - 1];
+      console.log(meetId)
+    });
+    db.addResponse(event.text, Date.now(), meetId);
     rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
   }
 });
