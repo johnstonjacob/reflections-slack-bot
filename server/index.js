@@ -34,40 +34,40 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(session({
-  secret: 'keyboard cat',
-  saveUninitialized: false,
-  resave: true,
-  cookie: {
-    maxAge: 3600000,
-  },
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    saveUninitialized: false,
+    resave: true,
+    cookie: {
+      maxAge: 3600000,
+    },
+  })
+);
 
-app.get('/test', (req, res) => {
-  db.test();
-});
-
+// app.get('/test', (req, res) => {
+//   db.test();
+// });
 
 // checks whether user is authenticated whenever component is mounted
 app.get('/checkAuth', (req, res) => {
-  console.log('reqSESSION', req.session, 'and Req.query:', req.query);
+  // console.log('reqSESSION', req.session, 'and Req.query:', req.query);
   res.send(req.session);
 });
-
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
 });
 
-
-app.use('/slack/employeeResponse', employeeResponse);
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
-app.use('/slack/auth', auth);
 app.use('/dash/postmessage', slackMessage);
 app.use('/dash/getusers', slackUsers);
 app.use('/dash/getchannels', slackChannels);
+
 app.use('/slack/auth/redirect', authRedirect);
+app.use('/slack/auth', auth);
+app.use('/slack/employeeResponse', employeeResponse);
 
 app.listen(port, () => {
   log(`Server started on port ${port}!`);
