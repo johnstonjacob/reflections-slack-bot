@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   Object.keys(data).forEach((item) => {
     users.push([item, data[item]]);
   });
-  console.log('USERS', users);
+  // console.log('USERS', users);
   const userStatus = [];
   let meetId;
   users.forEach((user) => {
@@ -28,9 +28,10 @@ router.get('/', (req, res) => {
       })
     });
   });
-
-
-  res.send(users, userStatus);
+  
+  console.log("USERSTATUS:", userStatus)
+  
+  res.send(userStatus);
 });
 
 module.exports = router;
