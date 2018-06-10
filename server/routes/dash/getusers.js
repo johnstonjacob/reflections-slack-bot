@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   const userStatus = [];
   let current = 0;
 
-  users.forEach((user) => {
+  users.forEach(function(user) {
     current += 1;
     let meetId;
     const oneUser = [];
