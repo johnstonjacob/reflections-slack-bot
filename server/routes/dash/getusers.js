@@ -24,6 +24,7 @@ router.get('/', (req, res) => {
       if (results.rows.length) {
         meetId = results.rows[results.rows.length - 1].id;
       }
+
       console.log('THIS IS THE MEET ID:', meetId);
       if (meetId !== undefined) {
         db.checkStatus(meetId, (resi) => {
