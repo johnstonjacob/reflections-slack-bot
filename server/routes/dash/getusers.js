@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
             oneUser.push(2);
             // userStatus.push(oneUser);
             console.log('ALSO AM I HAPENSTANCE:', userStatus);
-            if (current === users.length) {
+            if (current === users.length + 1) {
               res.send(userStatus);
             }
 
