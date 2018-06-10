@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     users.push([item, data[item]]);
   });
   // console.log('USERS', users);
-  let userStatus = [];
+  const userStatus = [];
   // const current = 0;
 
   users.forEach((user) => {
@@ -27,19 +27,12 @@ router.get('/', (req, res) => {
       console.log('THIS IS THE MEET ID:', meetId);
       if (meetId !== undefined) {
         db.checkStatus(meetId, (resi) => {
-          // console.log('result for each student:', resi.rows);
           if (!resi.rows.length) {
             oneUser.push(1);
-            // userStatus.push(oneUser);
             console.log('PUSHING 1:', userStatus);
           } else {
             oneUser.push(2);
-            // userStatus.push(oneUser);
             console.log('PUSHING 2:', userStatus);
-            // if (current === users.length) {
-            //   res.send(userStatus);
-            // }
-
           }
         });
       } else {
