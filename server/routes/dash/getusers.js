@@ -29,6 +29,7 @@ router.get('/', (req, res) => {
             oneUser.push(1);
             console.log("AM I HAPPENING:", oneUser)
           } else {
+            console.log("ALSO AM I HAPENSTANCE:", oneUser)
             oneUser.push(2);
           }
         });
