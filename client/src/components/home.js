@@ -35,7 +35,7 @@ class Home extends React.Component {
       .then((response) => {
         this.setState({
           allStudents: response.data,
-        });
+        }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
       })
       .catch((error) => {
         throw error;
