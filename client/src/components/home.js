@@ -6,6 +6,7 @@ import {
   Button,
   Col,
   Row,
+  Collapse,
 } from 'reactstrap';
 
 class Home extends React.Component {
@@ -15,6 +16,7 @@ class Home extends React.Component {
       allStudents: [],
       cohorts: [],
       members: [],
+      homeDrop: false,
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -40,6 +42,12 @@ class Home extends React.Component {
       .catch((error) => {
         throw error;
       });
+
+    setTimeout(() => {
+      this.setState({
+        homeDrop: true,
+      });
+    }, 1500);
   }
 
   getMembers(e) {
@@ -60,55 +68,57 @@ class Home extends React.Component {
     return (
       <div className="App">
 
-        <button onClick={() => { console.log(this.state); }}>Home State</button>
+        {/* <button onClick={() => { console.log(this.state); }}>Home State</button>
         <button onClick={() => { console.log(this.props); }}>Home Props</button>
+        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button> */}
 
-        <button onClick={() => this.props.logout()}>Logout</button>
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
-        <h1>Home Screen</h1>
 
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
-        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
+        <Collapse isOpen={this.state.homeDrop}>
+          <h1>Home Screen</h1>
+          <Button outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
 
-        <Container>
-          <Row>
-            <Col>
-              <h1>Cohorts</h1>
-              {this.state.cohorts.map(cohort => (
-                <Col key={cohort.id} >
-                  <Button
-                    outline
-                    color="primary"
-                    key={cohort.id}
-                    value={cohort.cohort.members}
-                    onClick={this.getMembers}
-                  >{cohort.cohort.name}
-                  </Button>
-                </Col>
+          <Container>
+            <Row>
+              <Col>
+                <h1>Cohorts</h1>
+                {this.state.cohorts.map(cohort => (
+                  <Col key={cohort.id} >
+                    <Button
+                      outline
+                      color="primary"
+                      key={cohort.id}
+                      value={cohort.cohort.members}
+                      onClick={this.getMembers}
+                    >{cohort.cohort.name}
+                    </Button>
+                  </Col>
             ))}
-            </Col>
-            <Col>
-              <h1>Students</h1>
-              {this.state.members.map(person => (
-                <Col key={person[0]}>
-                  <Button outline color="success" onClick={this.props.getStudent} value={person}>
-                    {person[1]}
-                  </Button>
-                </Col>
+              </Col>
+              <Col>
+                <h1>Students</h1>
+                {this.state.members.map(person => (
+                  <Col key={person[0]}>
+                    <Button outline color="success" onClick={this.props.getStudent} value={person}>
+                      {person[1]}
+                    </Button>
+                  </Col>
               ))}
-            </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
 
+        </Collapse>
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  changeView: PropTypes.func.isRequired,
+  // changeView: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
 };

@@ -3,7 +3,7 @@ import axios from 'axios';
 import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
-import Meeting from './components/meeting/meeting';
+import Meeting from './components/meeting';
 import Response from './components/studentResponse';
 
 axios.defaults.withCredentials = true;
@@ -25,8 +25,6 @@ class App extends React.Component {
     this.getStudent = this.getStudent.bind(this);
   }
 
-
-  
 
   // when component mounts, checks server authentication
   componentDidMount() {
