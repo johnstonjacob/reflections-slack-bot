@@ -42,11 +42,11 @@ router.get('/', (req, res) => {
       }
     });
     // userStatus.push(oneUser);
+    res.send(userStatus);
   });
 
   console.log('USERSTATUS:', userStatus);
 
-  res.send(userStatus);
 });
 
 module.exports = router;
