@@ -23,7 +23,3 @@ const Login = props => (
 );
 
 export default Login;
-
-// Login.propTypes = {
-//   logIn: propTypes.boolean.isRequired,
-// }

@@ -27,7 +27,6 @@ class Meeting extends React.Component {
     this.submitMessage = this.submitMessage.bind(this);
   }
 
-
   notesChange(e) {
     this.setState({
       notes: e.target.value,
@@ -41,9 +40,6 @@ class Meeting extends React.Component {
   }
 
   submitMessage() {
-    // console.log(`Student Name: ${this.state.student}`);
-    // console.log(`Notes: ${this.state.notes}`);
-    // console.log(`Message: ${this.state.message}`);
     axios
       .post('/dash/postmessage', {
         student: this.state.student,
