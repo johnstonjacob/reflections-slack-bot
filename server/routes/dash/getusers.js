@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
       if (res.rows.length) {
         meetId = res.rows[res.rows.length - 1].id;
       }
-      // console.log('THIS IS THE MEET ID:', meetId);
+      console.log('THIS IS THE MEET ID:', meetId);
     });
     if (meetId) {
       db.checkStatus(meetId, (res) => {
