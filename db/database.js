@@ -87,7 +87,7 @@ function checkStatus(meetid, callback) {
     if (err) {
       console.log(err)
     } else {
-      console.log(res)
+      // console.log(res)
       callback(res)
     }
   })
@@ -122,7 +122,7 @@ function findLastMeeting(empid, callback) {
     if (err) {
       console.log(err);
     } else {
-      console.log(res);
+      // console.log(res);
       callback(res);
     }
   });
