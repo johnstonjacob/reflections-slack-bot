@@ -36,7 +36,10 @@ router.get('/', (req, res) => {
             oneUser.push(2);
             // userStatus.push(oneUser);
             console.log('ALSO AM I HAPENSTANCE:', userStatus);
-        
+            if (current === users.length) {
+              res.send(userStatus);
+            }
+
           }
         });
       } else {
@@ -45,9 +48,6 @@ router.get('/', (req, res) => {
         console.log('WHERE WERE YOU:', userStatus);
       }
       userStatus.push(oneUser)
-      if (current === users.length) {
-        res.send(userStatus);
-      }
       console.log('USERSTATUS:', userStatus);
     });
   });
