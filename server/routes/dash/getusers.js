@@ -29,15 +29,15 @@ router.get('/', (req, res) => {
             oneUser.push(1);
             console.log("AM I HAPPENING:", oneUser)
           } else {
-            console.log("ALSO AM I HAPENSTANCE:", oneUser)
             oneUser.push(2);
+            console.log("ALSO AM I HAPENSTANCE:", oneUser)
           }
         });
       } else {
         oneUser.push(0);
       }
+      userStatus.push(oneUser);
     });
-    userStatus.push(oneUser);
   });
 
   console.log('USERSTATUS:', userStatus);
