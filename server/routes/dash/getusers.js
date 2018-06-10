@@ -18,8 +18,10 @@ router.get('/', (req, res) => {
     const oneUser = []
     oneUser.push(user[0], user[1])
     db.findLastMeeting(user[0], (res) => {
+      console.log("FINDLASTMEETINGRES:", res)
       meetId = res.rows[res.rows.length - 1].id;
-      db.checkStatus(meetId, (res) => {
+    }
+    db.checkStatus(meetId, (res) => {
         console.log("result for each student:", res)
         if (res === null) {
           oneUser.status.push(0)
@@ -27,7 +29,7 @@ router.get('/', (req, res) => {
           oneUser.status.push(1)
         }
       })
-    });
+    );
     userStatus.push(oneUser);
   });
 
