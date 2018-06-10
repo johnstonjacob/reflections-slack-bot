@@ -13,14 +13,17 @@ router.get('/', (req, res) => {
   });
   // console.log('USERS', users);
   const userStatus = [];
-  current = 0;
+  let current = 0;
 
   users.forEach((user) => {
-    current++
+    current += 1;
     let meetId;
     const oneUser = [];
     oneUser.push(user[0], user[1]);
     db.findLastMeeting(user[0], (results) => {
+      if (current === users.length) {
+        res.send(userStatus);
+      }
       if (results.rows.length) {
         meetId = results.rows[results.rows.length - 1].id;
       }
@@ -45,9 +48,7 @@ router.get('/', (req, res) => {
         console.log('WHERE WERE YOU:', userStatus);
       }
       userStatus.push(oneUser)
-      if (current === users.length) {
-        res.send(userStatus)
-      }
+      
       console.log('USERSTATUS:', userStatus);
     });
   });
