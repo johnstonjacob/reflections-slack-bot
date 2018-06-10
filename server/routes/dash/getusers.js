@@ -19,7 +19,9 @@ router.get('/', (req, res) => {
     oneUser.push(user[0], user[1])
     db.findLastMeeting(user[0], (res) => {
       console.log("FINDLASTMEETINGRES:", res)
-      meetId = res.rows[res.rows.length - 1].id;
+      if(res.rows.length){
+        meetId = res.rows[res.rows.length - 1].id;
+      }
       console.log("THIS IS THE MEET ID:", meetId)
     });
     db.checkStatus(meetId, (res) => {
