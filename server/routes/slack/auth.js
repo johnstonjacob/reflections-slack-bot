@@ -10,9 +10,8 @@ dotenv.config({
   silent: true,
 });
 
-
 router.get('/', (req, res) => {
-  console.log('REQ.query.code TEST', req.query.code);
+  // console.log('REQ.query.code TEST', req.query.code);
   const code = req.query.code;
   const options = {
     method: 'GET',
@@ -36,3 +35,5 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+
+
