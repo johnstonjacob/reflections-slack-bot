@@ -20,9 +20,9 @@ router.get('/', (req, res) => {
     let meetId;
     const oneUser = [];
     oneUser.push(user[0], user[1]);
-    db.findLastMeeting(user[0], (res) => {
-      if (res.rows.length) {
-        meetId = res.rows[res.rows.length - 1].id;
+    db.findLastMeeting(user[0], (results) => {
+      if (results.rows.length) {
+        meetId = results.rows[results.rows.length - 1].id;
       }
       console.log('THIS IS THE MEET ID:', meetId);
       if (meetId !== undefined) {
