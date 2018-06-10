@@ -20,16 +20,15 @@ router.get('/', (req, res) => {
     db.findLastMeeting(user[0], (res) => {
       console.log("FINDLASTMEETINGRES:", res)
       meetId = res.rows[res.rows.length - 1].id;
-    }
+    });
     db.checkStatus(meetId, (res) => {
-        console.log("result for each student:", res)
-        if (res === null) {
-          oneUser.status.push(0)
-        } else {
-          oneUser.status.push(1)
-        }
-      })
-    );
+      console.log("result for each student:", res)
+      if (res === null) {
+        oneUser.status.push(0)
+      } else {
+        oneUser.status.push(1)
+      }
+    });
     userStatus.push(oneUser);
   });
 
