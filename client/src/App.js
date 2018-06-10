@@ -4,7 +4,6 @@ import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
 import Meeting from './components/meeting';
-import Response from './components/studentResponse';
 
 axios.defaults.withCredentials = true;
 
@@ -21,7 +20,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.test = this.test.bind(this);
+    // this.test = this.test.bind(this);
     this.getStudent = this.getStudent.bind(this);
   }
 
@@ -63,7 +62,6 @@ class App extends React.Component {
     });
   }
 
-
   // function to log out of session
   logOut() {
     this.setState({
@@ -72,16 +70,14 @@ class App extends React.Component {
     axios.get('/logout');
   }
 
-  test() {
-    console.log('AM I WorkING');
-    axios.get('/test');
-  }
+  // test() {
+  //   console.log('AM I WorkING');
+  //   axios.get('/test');
+  // }
   render() {
     switch (this.state.show) {
       case 'meeting':
         return <Meeting changeView={this.changeView} student={this.state.student} />;
-      case 'response':
-        return <Response changeView={this.changeView} />;
 
       default:
         return this.state.isAuthenticated ? (

@@ -6,7 +6,6 @@ import {
   Button,
   Col,
   Row,
-  Collapse,
 } from 'reactstrap';
 
 class Home extends React.Component {
@@ -16,7 +15,6 @@ class Home extends React.Component {
       allStudents: [],
       cohorts: [],
       members: [],
-      homeDrop: false,
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -42,12 +40,6 @@ class Home extends React.Component {
       .catch((error) => {
         throw error;
       });
-
-    setTimeout(() => {
-      this.setState({
-        homeDrop: true,
-      });
-    }, 1500);
   }
 
   getMembers(e) {
@@ -60,8 +52,9 @@ class Home extends React.Component {
         }
       });
     });
-
-    this.setState({ members: membersArray });
+    this.setState({
+      members: membersArray,
+    });
   }
 
   render() {
@@ -77,41 +70,39 @@ class Home extends React.Component {
           <h1 className="App-title">LindenBot</h1>
         </header>
 
-        <Collapse isOpen={this.state.homeDrop}>
-          <h1>Home Screen</h1>
-          <Button outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
+        <h1>Home Screen</h1>
+        <Button outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
 
-          <Container>
-            <Row>
-              <Col>
-                <h1>Cohorts</h1>
-                {this.state.cohorts.map(cohort => (
-                  <Col key={cohort.id} >
-                    <Button
-                      outline
-                      color="primary"
-                      key={cohort.id}
-                      value={cohort.cohort.members}
-                      onClick={this.getMembers}
-                    >{cohort.cohort.name}
-                    </Button>
-                  </Col>
+        <Container>
+          <Row>
+            <Col>
+              <h1>Cohorts</h1>
+              {this.state.cohorts.map(cohort => (
+                <Col key={cohort.id} >
+                  <Button
+                    outline
+                    color="primary"
+                    key={cohort.id}
+                    value={cohort.cohort.members}
+                    onClick={this.getMembers}
+                  >{cohort.cohort.name}
+                  </Button>
+                </Col>
             ))}
-              </Col>
-              <Col>
-                <h1>Students</h1>
-                {this.state.members.map(person => (
-                  <Col key={person[0]}>
-                    <Button outline color="success" onClick={this.props.getStudent} value={person}>
-                      {person[1]}
-                    </Button>
-                  </Col>
+            </Col>
+            <Col>
+              <h1>Students</h1>
+              {this.state.members.map(person => (
+                <Col key={person[0]}>
+                  <Button outline color="success" onClick={this.props.getStudent} value={person}>
+                    {person[1]}
+                  </Button>
+                </Col>
               ))}
-              </Col>
-            </Row>
-          </Container>
+            </Col>
+          </Row>
+        </Container>
 
-        </Collapse>
       </div>
     );
   }
