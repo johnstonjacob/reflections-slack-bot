@@ -21,7 +21,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.test = this.test.bind(this);
+    // this.test = this.test.bind(this);
     this.getStudent = this.getStudent.bind(this);
   }
 
@@ -72,10 +72,11 @@ class App extends React.Component {
     axios.get('/logout');
   }
 
-  test() {
-    console.log('AM I WorkING');
-    axios.get('/test');
-  }
+  // test() {
+  //   console.log('AM I WorkING');
+  //   axios.get('/test');
+  // }
+
   render() {
     switch (this.state.show) {
       case 'meeting':

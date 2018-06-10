@@ -60,17 +60,17 @@ class Home extends React.Component {
     return (
       <div className="App">
 
-        <button onClick={() => { console.log(this.state); }}>Home State</button>
+        {/* <button onClick={() => { console.log(this.state); }}>Home State</button>
         <button onClick={() => { console.log(this.props); }}>Home Props</button>
+        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button> */}
 
-        <button onClick={() => this.props.logout()}>Logout</button>
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
         <h1>Home Screen</h1>
+        <Button outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
 
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
-        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
 
         <Container>
           <Row>

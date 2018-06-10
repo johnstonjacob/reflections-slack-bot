@@ -6,7 +6,7 @@ const Login = props => (
     <header className="App-header">
       <h1 className="App-title">LindenBot</h1>
     </header>
-    <button onClick={() => props.test()}>TEST</button>
+    {/* <button onClick={() => props.test()}>TEST</button> */}
     <button onClick={props.logIn}>Log In</button>
     <div>
       <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=371272898032.373869995077&redirect_uri=http://159.65.110.176/slack/auth">
