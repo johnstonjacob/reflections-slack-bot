@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     let meetId;
     const oneUser = []
     oneUser.push(user[0], user[1])
-    db.findLastMeeting(user[1], (res) => {
+    db.findLastMeeting(user[0], (res) => {
       meetId = res.rows[res.rows.length - 1].id;
       db.checkStatus(meetId, (res) => {
         console.log("result for each student:", res)
