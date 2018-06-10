@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
       }
       console.log('THIS IS THE MEET ID:', meetId);
     });
-    if (meetId) {
+    if (meetId !== undefined) {
       db.checkStatus(meetId, (res) => {
         console.log('result for each student:', res);
         if (res === null) {
