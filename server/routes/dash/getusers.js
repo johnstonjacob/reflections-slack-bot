@@ -28,28 +28,24 @@ router.get('/', (req, res) => {
           console.log('result for each student:', resi.rows);
           if (!resi.rows.length) {
             oneUser.push(1);
-            userStatus.push(oneUser)
-            console.log("AM I HAPPENING:", userStatus)
+            // userStatus.push(oneUser);
+            console.log('AM I HAPPENING:', userStatus);
           } else {
             oneUser.push(2);
-            userStatus.push(oneUser)
-            console.log("ALSO AM I HAPENSTANCE:", userStatus)
+            // userStatus.push(oneUser);
+            console.log('ALSO AM I HAPENSTANCE:', userStatus);
           }
         });
       } else {
         oneUser.push(0);
-        userStatus.push(oneUser)
-        console.log("WHERE WERE YOU:", userStatus)
-
+        // userStatus.push(oneUser);
+        console.log('WHERE WERE YOU:', userStatus);
       }
-      // userStatus.push(oneUser)
+      userStatus.push(oneUser)
       console.log('USERSTATUS:', userStatus);
-      
     });
   });
   res.send(userStatus);
-  
-
 });
 
 module.exports = router;
