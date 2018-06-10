@@ -10,7 +10,14 @@ router.get('/', (req, res) => {
   Object.keys(data).forEach((item) => {
     users.push([item, data[item]]);
   });
-  // console.log('USERS', users);
+  console.log('USERS', users);
+  // let meetId;
+  // db.findLastMeeting(event.user, (res) => {
+  //   meetId = res.rows[res.rows.length - 1].id;
+  //   db.addResponse(event.text, Date.now(), meetId);
+  // });
+
+
   res.send(users);
 });
 
