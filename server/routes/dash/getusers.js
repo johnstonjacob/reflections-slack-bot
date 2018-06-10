@@ -36,8 +36,8 @@ router.get('/', (req, res) => {
       } else {
         oneUser.push(0);
       }
-      userStatus.push(oneUser);
     });
+    userStatus.push(oneUser);
   });
 
   console.log('USERSTATUS:', userStatus);
