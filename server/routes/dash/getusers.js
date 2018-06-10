@@ -24,9 +24,9 @@ router.get('/', (req, res) => {
     db.checkStatus(meetId, (res) => {
       console.log("result for each student:", res)
       if (res === null) {
-        oneUser.status.push(0)
+        oneUser.push(0)
       } else {
-        oneUser.status.push(1)
+        oneUser.push(1)
       }
     });
     userStatus.push(oneUser);
