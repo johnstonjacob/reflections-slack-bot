@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
   const userStatus = [];
   let current = 0;
 
-  users.forEach(function(user) {
+  users.forEach((user) => {
     current += 1;
     let meetId;
     const oneUser = [];
@@ -36,9 +36,9 @@ router.get('/', (req, res) => {
             oneUser.push(2);
             // userStatus.push(oneUser);
             console.log('PUSHING 2:', userStatus);
-            if (current === users.length) {
-              res.send(userStatus);
-            }
+            // if (current === users.length) {
+            //   res.send(userStatus);
+            // }
 
           }
         });
@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
       console.log('USERSTATUS:', userStatus);
     });
   });
-  // res.send(userStatus);
+  res.send(userStatus);
 });
 
 module.exports = router;
