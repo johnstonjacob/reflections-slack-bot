@@ -15,22 +15,24 @@ router.get('/', (req, res) => {
   const userStatus = [];
   let meetId;
   users.forEach((user) => {
-    userStatus.push(user[0], [1])
-    db.findLastMeeting(user, (res) => {
+    const oneUser = []
+    oneUser.push(user[0], user[1])
+    db.findLastMeeting(user[1], (res) => {
       meetId = res.rows[res.rows.length - 1].id;
       db.checkStatus(meetId, (res) => {
         console.log("result for each student:", res)
         if (res === null) {
-          user.status.push(0)
+          oneUser.status.push(0)
         } else {
-          user.status.push(1)
+          oneUser.status.push(1)
         }
       })
     });
+    userStatus.push(oneUser);
   });
-  
+
   console.log("USERSTATUS:", userStatus)
-  
+
   res.send(userStatus);
 });
 
