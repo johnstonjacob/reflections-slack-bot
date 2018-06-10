@@ -12,8 +12,6 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// import Dropdown from './dropdown';
-
 class Meeting extends React.Component {
   constructor(props) {
     super(props);
@@ -21,36 +19,13 @@ class Meeting extends React.Component {
       student: this.props.student.split(',')[0],
       notes: '',
       message: '',
-      students: [],
-      dropdownOpen: false,
+      // students: [],
+      // dropdownOpen: false,
     };
-    // this.studentChange = this.studentChange.bind(this);
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
-    // this.getStudents = this.getStudents.bind(this);
-    // this.toggle = this.toggle.bind(this);
-
-    // this.getStudents();
   }
-  // getStudents() {
-  //   const options = { method: 'GET', url: '/dash/getusers' };
-
-  //   axios(options).then(res => this.setState({ students: res.data }));
-  // }
-
-  // toggle() {
-  //   this.setState(prevState => ({
-  //     dropdownOpen: !prevState.dropdownOpen,
-  //   }));
-  // }
-
-
-  // studentChange(e) {
-  //   this.setState({
-  //     student: e.target.value,
-  //   });
-  // }
 
 
   notesChange(e) {
@@ -75,8 +50,6 @@ class Meeting extends React.Component {
         notes: this.state.notes,
         message: this.state.message,
       });
-    // .then(console.log)
-    // .catch(console.error);
   }
 
   render() {
@@ -90,12 +63,15 @@ class Meeting extends React.Component {
           <h1 className="App-title">LindenBot</h1>
         </header>
 
-        <button onClick={() => { this.props.changeView('home'); }} > Home </button>
+        <Button
+          outline color="secondary"
+          onClick={() => { this.props.changeView('home'); }}
+        >Home
+        </Button>
 
         <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
 
         <Container>
-          {/* <Dropdown students={this.state.students} /> */}
           <Form>
             <FormGroup>
               <Label for="exampleText">Notes</Label>

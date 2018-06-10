@@ -108,7 +108,7 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  changeView: PropTypes.func.isRequired,
+  // changeView: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
 };
