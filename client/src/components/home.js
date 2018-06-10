@@ -33,9 +33,10 @@ class Home extends React.Component {
 
     axios.get('/dash/getusers', {})
       .then((response) => {
-        this.setState({
-          allStudents: response.data,
-        }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
+        // this.setState({
+        //   allStudents: response.data,
+        // }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
+        console.log(response.data)
       })
       .catch((error) => {
         throw error;
