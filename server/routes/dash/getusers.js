@@ -42,10 +42,10 @@ router.get('/', (req, res) => {
         console.log("WHERE WERE YOU:", userStatus)
 
       }
-
+      // userStatus.push(oneUser)
+      console.log('USERSTATUS:', userStatus);
+      
     });
-    userStatus.push(oneUser)
-    console.log('USERSTATUS:', userStatus);
   });
   res.send(userStatus);
   
