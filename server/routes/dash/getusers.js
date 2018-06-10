@@ -27,17 +27,21 @@ router.get('/', (req, res) => {
           console.log('result for each student:', resi.rows);
           if (!resi.rows.length) {
             oneUser.push(1);
-            console.log("AM I HAPPENING:", oneUser)
+            userStatus.push(oneUser)
+            console.log("AM I HAPPENING:", userStatus)
+
           } else {
             oneUser.push(2);
-            console.log("ALSO AM I HAPENSTANCE:", oneUser)
+            userStatus.push(oneUser)
+            console.log("ALSO AM I HAPENSTANCE:", userStatus)
           }
         });
       } else {
         oneUser.push(0);
+        userStatus.push(oneUser)
       }
     });
-    userStatus.push(oneUser);
+    // userStatus.push(oneUser);
   });
 
   console.log('USERSTATUS:', userStatus);
