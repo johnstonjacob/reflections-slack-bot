@@ -27,15 +27,15 @@ router.get('/', (req, res) => {
       console.log('THIS IS THE MEET ID:', meetId);
       if (meetId !== undefined) {
         db.checkStatus(meetId, (resi) => {
-          console.log('result for each student:', resi.rows);
+          // console.log('result for each student:', resi.rows);
           if (!resi.rows.length) {
             oneUser.push(1);
             // userStatus.push(oneUser);
-            console.log('AM I HAPPENING:', userStatus);
+            console.log('PUSHING 1:', userStatus);
           } else {
             oneUser.push(2);
             // userStatus.push(oneUser);
-            console.log('ALSO AM I HAPENSTANCE:', userStatus);
+            console.log('PUSHING 2:', userStatus);
             if (current === users.length) {
               res.send(userStatus);
             }
@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
       } else {
         oneUser.push(0);
         // userStatus.push(oneUser);
-        console.log('WHERE WERE YOU:', userStatus);
+        console.log('CHECKING USERSTATUS STATE:', userStatus);
       }
       userStatus.push(oneUser)
       console.log('USERSTATUS:', userStatus);
