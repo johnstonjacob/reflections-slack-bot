@@ -47,7 +47,7 @@ router.get('/', (req, res) => {
         // userStatus.push(oneUser);
         console.log('CHECKING USERSTATUS STATE:', userStatus);
       }
-      userStatus.push(oneUser)
+      // userStatus.push(oneUser)
       console.log('USERSTATUS:', userStatus);
     });
   });
