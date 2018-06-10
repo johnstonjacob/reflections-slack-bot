@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
   });
   // console.log('USERS', users);
   const userStatus = [];
-  let meetId;
   users.forEach((user) => {
+    let meetId;
     const oneUser = []
     oneUser.push(user[0], user[1])
     db.findLastMeeting(user[1], (res) => {
