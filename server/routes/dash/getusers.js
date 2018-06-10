@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
         db.checkStatus(meetId, (resi) => {
           console.log('result for each student:', resi.rows);
           if (!resi.rows.length) {
+            console.log("AM I HAPPENING")
             oneUser.push(1);
           } else {
             oneUser.push(2);
