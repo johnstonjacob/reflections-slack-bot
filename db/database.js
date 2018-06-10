@@ -82,7 +82,7 @@ function addResponse(response, resdate, meetid) {
 }
 
 function checkStatus(meetid, callback) {
-  const sql = 'SELECT * FROM response WHERE meetid=($1)';
+  const sql = 'SELECT id FROM response WHERE meetid=($1)';
   client.query(sql, [meetid], (err, res) => {
     if (err) {
       console.log(err)
