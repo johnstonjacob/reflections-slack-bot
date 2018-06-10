@@ -87,7 +87,7 @@ function checkStatus(meetid, callback) {
     if (err) {
       console.log(err)
     } else {
-      // console.log(res)
+      console.log("RESPONSE FROM CHECKSTATUS DBFUNCTINO:", res)
       callback(res)
     }
   })
