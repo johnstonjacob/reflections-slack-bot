@@ -1,4 +1,7 @@
-const { Pool, Client } = require('pg');
+const {
+  Pool,
+  Client
+} = require('pg');
 
 const connectionString = 'postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack';
 // const connectionString = process.env.POSTGRESQL_AUTH;
@@ -48,18 +51,15 @@ function saveMeetings(notes, message, empslackid, meetdate) {
 }
 
 
-
 function test() {
-
   client.query('SELECT * from response', (err, res) => {
-	  // console.log(res);
-	  if (err) {
+    // console.log(res);
+    if (err) {
       console.log(err);
-	  } else {
+    } else {
       console.log(res);
-	  }
-
-    })
+    }
+  });
 }
 
 // Adds a response to the response table
@@ -75,11 +75,23 @@ function addResponse(response, resdate, meetid) {
     } else {
       console.log(res);
     }
+  });
+}
+
+function checkStatus(meetid, callback) {
+  const sql = 'SELECT * FROM response WHERE meetid=($1)';
+  client.query(sql, [meetid], (err, res) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(res)
+      callback(res)
+    }
   })
 }
 
-//Can only be called after the response table has been updated.
-//resid is "id" in the response table, and is a foreign key in meetings
+// Can only be called after the response table has been updated.
+// resid is "id" in the response table, and is a foreign key in meetings
 function updateMeetingRes(meetid, resid) {
   const sql = 'UPDATE meetings SET resid=($1) WHERE id=($2)';
 
@@ -89,7 +101,7 @@ function updateMeetingRes(meetid, resid) {
     } else {
       console.log(res);
     }
-  })
+  });
 }
 
 
@@ -98,7 +110,7 @@ function updateMeetingRes(meetid, resid) {
 // The return value will then be used to identify where to connect
 // the resid value (from the newly generated response)
 
-//I'm going to need help with the callback.
+// I'm going to need help with the callback.
 
 function findLastMeeting(empid, callback) {
   const sql = 'SELECT id FROM MEETINGS WHERE (empslackid = $1 AND resid IS NULL);';
@@ -108,11 +120,10 @@ function findLastMeeting(empid, callback) {
       console.log(err);
     } else {
       console.log(res);
-      callback(res)
+      callback(res);
     }
-  })
+  });
 }
-
 
 
 // client.query('SELECT NOW()', (err, res) => {
@@ -120,6 +131,7 @@ function findLastMeeting(empid, callback) {
 //   client.end();
 // });
 
+module.exports.checkStatus = checkStatus;
 module.exports.addResponse = addResponse;
 module.exports.updateMeetingRes = updateMeetingRes;
 module.exports.findLastMeeting = findLastMeeting;
