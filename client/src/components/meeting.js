@@ -16,7 +16,7 @@ class Meeting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: this.props.student.split(',')[0],
+      student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
       // students: [],
@@ -31,6 +31,7 @@ class Meeting extends React.Component {
     this.setState({
       notes: e.target.value,
     });
+    // console.log(this.state.student.slice(2));
   }
 
   messageChange(e) {
@@ -46,6 +47,7 @@ class Meeting extends React.Component {
         notes: this.state.notes,
         message: this.state.message,
       });
+      console.log('Message Sent');
   }
 
   render() {
@@ -99,9 +101,12 @@ class Meeting extends React.Component {
           </Form>
           {this.props.history.map( (message) => {
             return(
-              <div>
-                <h3>Your Message: {message.message}</h3>
-                <h5>Student Response: {message.restext}</h5>
+              <div key={message.id}>
+              <h3> ===== Meeting Session ===== </h3>
+                <h4 className="admin">Notes: {message.notes}</h4>
+                <h3 className="admin">Message: {message.message}</h3>
+                <h5> ------ Reflection ------ </h5>
+                <h5 className="student">{message.restext}</h5>
               </div>
             )
           })}

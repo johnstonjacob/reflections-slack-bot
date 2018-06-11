@@ -101,13 +101,13 @@ class Home extends React.Component {
               {this.state.members.map(person => {
                 switch(person[0][2]) {
                       default: return <Col key={person[0][0]}>
-                          <Button outline color="secondary" onClick={this.props.getStudent} value={person}>{person[0][1]}</Button>
+                          <Button outline color="secondary" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
                         </Col>
                       case 1: return <Col key={person[0][0]}>
                           <Button outline color="warning" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
                         </Col>
                       case 2: return <Col key={person[0][0]}>
-                          <Button outline color="success" onClick={this.props.getStudent} value={person}>{person[0][1]}</Button>
+                          <Button outline color="success" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
                         </Col>
                     }           
                 })}
