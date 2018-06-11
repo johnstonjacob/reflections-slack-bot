@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Form,
   FormGroup,
@@ -11,14 +10,16 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 class Meeting extends React.Component {
-  constructor(props) {
+constructor(props) {
     super(props);
     this.state = {
       student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
+      reminder: ''
       // students: [],
       // dropdownOpen: false,
     };
@@ -46,8 +47,17 @@ class Meeting extends React.Component {
         student: this.state.student,
         notes: this.state.notes,
         message: this.state.message,
+        reminder: this.state.reminder
       });
       console.log('Message Sent');
+  }
+
+  reminder(){
+    axios
+      .post('/' ,{
+        reminder: this.state.reminder
+      })
+      console.log('Reminder Set')
   }
 
   render() {

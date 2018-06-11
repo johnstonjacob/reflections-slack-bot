@@ -29,6 +29,11 @@ function getChannels() {
   return channelList;
 }
 
+function reminder(time, text= 'response to reflection', user){
+  console.log("REMINDER FUNCTION HITTT")
+  web.apiCall('reminders.add',{time, text, user})
+}
+
 function updateInfo() {
   web.users // get list of users and format into object to reference userID to name
     .list()
@@ -68,6 +73,9 @@ rtm.on('slack_event', (type, event) => {
   }
 });
 
+
+
+module.exports.reminder = reminder
 module.exports.postMessage = postMessage;
 module.exports.getUsers = getUsers;
 module.exports.getChannels = getChannels;
