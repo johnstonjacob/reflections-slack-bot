@@ -32,7 +32,7 @@ class App extends React.Component {
       url: '/checkAuth',
     })
       .then((response) => {
-        console.log('response:', response.data);
+        // console.log('response:', response.data);
         this.setState({
           isAuthenticated: response.data.isAuthenticated,
         });
@@ -62,6 +62,7 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: true,
     });
+    console.log('Logging In');
   }
 
   // function to log out of session
@@ -72,6 +73,7 @@ class App extends React.Component {
     axios.get('/logout');
     console.log('Logged Out');
   }
+
 
   render() {
     switch (this.state.show) {

@@ -42,18 +42,12 @@ class Home extends React.Component {
         }, () => {
           // console.log('AllStudentState:', this.state.allStudents)
         });
-        // console.log(response)
         // console.log('Get Users');
         this.setState({
           drop: true,
         });
       })
       .catch(console.error);
-    // setTimeout(() => {
-    //   this.setState({
-    //     drop: true,
-    //   });
-    // }, 7000);
   }
 
   getMembers(e) {
