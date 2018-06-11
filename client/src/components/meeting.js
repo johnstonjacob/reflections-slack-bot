@@ -85,8 +85,8 @@ class Meeting extends React.Component {
     return (
       <div className="App">
 
-        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
+        {/* <button onClick={() => { console.log(this.state); }}>Meeting State</button>
+        <button onClick={() => { console.log(this.props); }}>Meeting Props</button> */}
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
