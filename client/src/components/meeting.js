@@ -12,51 +12,26 @@ import {
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// import Dropdown from './dropdown';
-
 class Meeting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: this.props.student.split(',')[0],
+      student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
-      students: [],
-      dropdownOpen: false,
+      // students: [],
+      // dropdownOpen: false,
     };
-    // this.studentChange = this.studentChange.bind(this);
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
-    // this.getStudents = this.getStudents.bind(this);
-    // this.toggle = this.toggle.bind(this);
-
-    // this.getStudents();
   }
-  // getStudents() {
-  //   const options = { method: 'GET', url: '/dash/getusers' };
-
-  //   axios(options).then(res => this.setState({ students: res.data }));
-  // }
-
-  // toggle() {
-  //   this.setState(prevState => ({
-  //     dropdownOpen: !prevState.dropdownOpen,
-  //   }));
-  // }
-
-
-  // studentChange(e) {
-  //   this.setState({
-  //     student: e.target.value,
-  //   });
-  // }
-
 
   notesChange(e) {
     this.setState({
       notes: e.target.value,
     });
+    // console.log(this.state.student.slice(2));
   }
 
   messageChange(e) {
@@ -66,17 +41,13 @@ class Meeting extends React.Component {
   }
 
   submitMessage() {
-    // console.log(`Student Name: ${this.state.student}`);
-    // console.log(`Notes: ${this.state.notes}`);
-    // console.log(`Message: ${this.state.message}`);
     axios
       .post('/dash/postmessage', {
         student: this.state.student,
         notes: this.state.notes,
         message: this.state.message,
       });
-    // .then(console.log)
-    // .catch(console.error);
+      console.log('Message Sent');
   }
 
   render() {
@@ -90,12 +61,15 @@ class Meeting extends React.Component {
           <h1 className="App-title">LindenBot</h1>
         </header>
 
-        <button onClick={() => { this.props.changeView('home'); }} > Home </button>
+        <Button
+          outline color="secondary"
+          onClick={() => { this.props.changeView('home'); }}
+        >Home
+        </Button>
 
         <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
 
         <Container>
-          {/* <Dropdown students={this.state.students} /> */}
           <Form>
             <FormGroup>
               <Label for="exampleText">Notes</Label>
@@ -123,8 +97,23 @@ class Meeting extends React.Component {
                 onChange={this.messageChange}
               />
             </FormGroup>
-            <Button onClick={this.submitMessage}> Submit </Button>
+            <Button color="primary" onClick={this.submitMessage}> Submit </Button>
           </Form>
+          {this.props.history.map( (message) => {
+            return(
+              <div key={message.id}>
+              <h3> ===== Meeting Session ===== </h3>
+                <h4 className="admin">Notes: {message.notes}</h4>
+                <h3 className="admin">Message: {message.message}</h3>
+                <h5> ------ Reflection ------ </h5>
+                <h5 className="student">{message.restext}</h5>
+              </div>
+            )
+          })}
+
+
+
+
         </Container>
       </div>
     );

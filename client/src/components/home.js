@@ -6,6 +6,7 @@ import {
   Button,
   Col,
   Row,
+  Collapse,
 } from 'reactstrap';
 
 class Home extends React.Component {
@@ -15,6 +16,7 @@ class Home extends React.Component {
       allStudents: {},
       cohorts: [],
       members: [],
+      homeDrop: false,
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -35,27 +37,30 @@ class Home extends React.Component {
       .then((response) => {
         this.setState({
           allStudents: response.data,
-        }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
-        console.log(response)
+        }, ()=>{
+          // console.log('AllStudentState:', this.state.allStudents)
+        });
+        // console.log(response)
+        console.log('Ready');
       })
       .catch(console.error);
+      setTimeout( () => {
+        this.setState({
+          drop:true,
+        })
+      },7000)
   }
 
   getMembers(e) {
     const membersArray = [];
-    console.log(this.state.allStudents)
-    // e.target.value.split(',').forEach((item) => {
-      Object.keys(this.state.allStudents).forEach((key) => {
-        const val = this.state.allStudents[key]
-        console.log(val)
-        // if (val[0] === item) {
-          membersArray.push(val);
-        // }
-      });
-    // });
-    console.log(membersArray)
 
-    this.setState({ members: membersArray });
+    e.target.value.split(',').forEach((id)=>{
+      if(this.state.allStudents.hasOwnProperty(id)){
+        membersArray.push(this.state.allStudents[id])
+      }
+    })
+    this.setState({ members: membersArray })
+    // console.log('Members: ', this.state.members);
   }
 
   render() {
@@ -64,15 +69,15 @@ class Home extends React.Component {
 
         <button onClick={() => { console.log(this.state); }}>Home State</button>
         <button onClick={() => { console.log(this.props); }}>Home Props</button>
+        {/* <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
+        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button> */}
 
-        <button onClick={() => this.props.logout()}>Logout</button>
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
+        <Collapse isOpen={this.state.drop}>
         <h1>Home Screen</h1>
-
-        <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
-        <button onClick={() => { this.props.changeView('response'); }} > Response Page </button>
+        <Button size="sm" outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
 
         <Container>
           <Row>
@@ -93,24 +98,30 @@ class Home extends React.Component {
             </Col>
             <Col>
               <h1>Students</h1>
-              {this.state.members.map(person => (
-                <Col key={person[0][0]}>
-                  <Button outline color="success" onClick={this.props.getStudent} value={person}>
-                    {person[0][1]}
-                  </Button>
-                </Col>
-              ))}
+              {this.state.members.map(person => {
+                switch(person[0][2]) {
+                      default: return <Col key={person[0][0]}>
+                          <Button outline color="secondary" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
+                        </Col>
+                      case 1: return <Col key={person[0][0]}>
+                          <Button outline color="warning" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
+                        </Col>
+                      case 2: return <Col key={person[0][0]}>
+                          <Button outline color="success" onClick={this.props.getStudent} value={JSON.stringify(person)}>{person[0][1]}</Button>
+                        </Col>
+                    }           
+                })}
             </Col>
           </Row>
         </Container>
-
+</Collapse>
       </div>
     );
   }
 }
 
 Home.propTypes = {
-  changeView: PropTypes.func.isRequired,
+  // changeView: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   getStudent: PropTypes.func.isRequired,
 };

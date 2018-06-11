@@ -23,7 +23,7 @@
 
     // "**/client/src/styles": true,
     "**/client/src/registerServiceWorker.js": true,
-    "**/example.env": true,
+    // "**/example.env": true,
   },
   "eslint.enable": false
 }

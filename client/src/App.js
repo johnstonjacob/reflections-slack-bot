@@ -3,8 +3,7 @@ import axios from 'axios';
 import './styles/App.css';
 import Home from './components/home';
 import Login from './components/login';
-import Meeting from './components/meeting/meeting';
-import Response from './components/studentResponse';
+import Meeting from './components/meeting';
 
 axios.defaults.withCredentials = true;
 
@@ -16,17 +15,16 @@ class App extends React.Component {
       show: 'home',
       isAuthenticated: true,
       student: '',
+      history: '',
     };
 
     this.changeView = this.changeView.bind(this);
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    this.test = this.test.bind(this);
+    // this.test = this.test.bind(this);
     this.getStudent = this.getStudent.bind(this);
   }
 
-
-  
 
   // when component mounts, checks server authentication
   componentDidMount() {
@@ -47,7 +45,10 @@ class App extends React.Component {
     this.setState({
       student: e.target.value,
       show: 'meeting',
+      history: (JSON.parse(e.target.value)).slice(1)
     });
+    // console.log(typeof e.target.value);
+    console.log(JSON.parse(e.target.value));
   }
 
   // function to change current view
@@ -74,16 +75,15 @@ class App extends React.Component {
     axios.get('/logout');
   }
 
-  test() {
-    console.log('AM I WorkING');
-    axios.get('/test');
-  }
+  // test() {
+  //   console.log('AM I WorkING');
+  //   axios.get('/test');
+  // }
+
   render() {
     switch (this.state.show) {
       case 'meeting':
-        return <Meeting changeView={this.changeView} student={this.state.student} />;
-      case 'response':
-        return <Response changeView={this.changeView} />;
+        return <Meeting changeView={this.changeView} student={this.state.student} history={this.state.history}/>;
 
       default:
         return this.state.isAuthenticated ? (
