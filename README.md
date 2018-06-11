@@ -32,3 +32,7 @@ BOT_USER_OAUTH = SLACK BOT OAUTH
 2. SET BUILD VARIABLE TO PROD
 3. CHANGE SLACK REDIRECT IN CLIENT/SRC/COMPONENTS/LOGIN AND SERVER/ROUTES/SLACK/AUTH.JS
 3. ```NPM RUN PROD```
+
+### SLACK APP SETUP
+1. Setup one app with all idenitiy permissions. use this with sign in with slack
+2. Setup the bot user with all permissions except idenitiy permissions
