@@ -12,6 +12,8 @@ router.post('/', (req, res) => {
   db.saveMeetings(body.notes, body.message, body.student, Date.now());
 
   slackbot.postMessage(body.message, body.student);
+
+  slackbot.setReminder('Respond to LindenBot', body.reminder, body.student);
 });
 
 module.exports = router;
