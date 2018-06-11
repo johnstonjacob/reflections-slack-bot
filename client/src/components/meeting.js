@@ -41,6 +41,12 @@ constructor(props) {
     });
   }
 
+  reminderChange(e){
+    this.setState({
+      reminder: e.target.value
+    })
+  }
+
   submitMessage() {
     axios
       .post('/dash/postmessage', {
@@ -52,13 +58,13 @@ constructor(props) {
       console.log('Message Sent');
   }
 
-  reminder(){
-    axios
-      .post('/' ,{
-        reminder: this.state.reminder
-      })
-      console.log('Reminder Set')
-  }
+  // reminder(){
+  //   axios
+  //     .post('/' ,{
+  //       reminder: this.state.reminder
+  //     })
+  //     console.log('Reminder Set')
+  // }
 
   render() {
     return (
@@ -107,6 +113,20 @@ constructor(props) {
                 onChange={this.messageChange}
               />
             </FormGroup>
+            <FormGroup>
+              <Label for="reminder">set a reminder</Label>
+              <Row>
+                <Col>
+                  <Input
+                    type="textarea"
+                    name="reminder"
+                    id="reminder"
+                    placeholder="ex: next thursday"
+                    value={this.state.reminder}
+                    onChange={this.reminderChange}
+                  />
+                </Col>
+              </Row>
             <Button color="primary" onClick={this.submitMessage}> Submit </Button>
           </Form>
           {this.props.history.map( (message) => {
