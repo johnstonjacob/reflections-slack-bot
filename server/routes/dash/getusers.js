@@ -4,48 +4,52 @@ const db = require('../../../db/database.js');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const data = slackbot.getUsers();
-  const users = [];
+const x = function () {
+  return new Promise((res, rej) => {
+    const data = slackbot.getUsers();
 
-  Object.keys(data).forEach((item) => {
-    users.push([item, data[item]]);
-  });
-  // console.log('USERS', users);
-  const userStatus = [];
-  // const current = 0;
+    const users = Object.keys(data).map((user) => [user, data[user]])
+    const queryList = Object.keys(data);
+    const queryResult = []
+    const formattedUsers = {}
 
-  users.forEach((user) => {
-    // current += 1;
-    let meetId;
-    const oneUser = [];
-    oneUser.push(user[0], user[1]);
-    db.findLastMeeting(user[0], (results) => {
-      if (results.rows.length) {
-        meetId = results.rows[results.rows.length - 1].id;
-      }
 
-      console.log('THIS IS THE MEET ID:', meetId);
-      if (meetId !== undefined) {
-        db.checkStatus(meetId, (resi) => {
-          if (!resi.rows.length) {
-            oneUser.push(1);
-            console.log('PUSHING 1:', userStatus);
+    db.collierSKYN(queryList).then(result => {
+      queryResult.push(...result.rows)
+      queryResult.map(meeting => {
+        if (!(meeting.empslackid in formattedUsers)) {
+          formattedUsers[meeting.empslackid] = [meeting]
+          // console.log(formattedUsers[meeting.empslackid][0])
+          formattedUsers[meeting.empslackid][0].name = data[meeting.empslackid]
+
+        } else {
+          formattedUsers[meeting.empslackid].push(meeting)
+          formattedUsers[meeting.empslackid].slice(-1)[0].name = data[meeting.empslackid]
+        }
+      })
+      const newUserList = users.map(user => {
+          if (!formattedUsers[user[0]]) {
+             user.push(0)
+             formattedUsers[user[0]] = [user]
+          } else if (formattedUsers[user[0]].slice(-1)[0].meetid === null) {
+             console.log("THISTHISTHIS:", formattedUsers[user[0]].slice(-1)[0].meetid)
+           user.push(1)
+           formattedUsers[user[0]].unshift(user)
           } else {
-            oneUser.push(2);
-            console.log('PUSHING 2:', userStatus);
+            user.push(2)
+            formattedUsers[user[0]].unshift(user)
           }
-        });
-      } else {
-        oneUser.push(0);
-        // userStatus.push(oneUser);
-        console.log('CHECKING USERSTATUS STATE:', userStatus);
-      }
-      userStatus.push(oneUser)
-      console.log('USERSTATUS:', userStatus);
-    });
-  });
-  res.send(userStatus);
+      })
+      console.log(formattedUsers)
+      res(formattedUsers)
+    }).catch(console.error)
+  })
+}
+
+
+
+router.get('/', (req, res) => {
+  x().then(result => res.send(result))
 });
 
 module.exports = router;

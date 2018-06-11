@@ -12,7 +12,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allStudents: [],
+      allStudents: {},
       cohorts: [],
       members: [],
     };
@@ -33,26 +33,27 @@ class Home extends React.Component {
 
     axios.get('/dash/getusers', {})
       .then((response) => {
-        // this.setState({
-        //   allStudents: response.data,
-        // }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
-        console.log(response.data)
+        this.setState({
+          allStudents: response.data,
+        }, ()=>{console.log('AllStudentState:', this.state.allStudents)});
+        console.log(response)
       })
-      .catch((error) => {
-        throw error;
-      });
+      .catch(console.error);
   }
 
   getMembers(e) {
     const membersArray = [];
-
-    e.target.value.split(',').forEach((item) => {
-      this.state.allStudents.forEach((tuple) => {
-        if (tuple[0] === item) {
-          membersArray.push(tuple);
-        }
+    console.log(this.state.allStudents)
+    // e.target.value.split(',').forEach((item) => {
+      Object.keys(this.state.allStudents).forEach((key) => {
+        const val = this.state.allStudents[key]
+        console.log(val)
+        // if (val[0] === item) {
+          membersArray.push(val);
+        // }
       });
-    });
+    // });
+    console.log(membersArray)
 
     this.setState({ members: membersArray });
   }
@@ -93,9 +94,9 @@ class Home extends React.Component {
             <Col>
               <h1>Students</h1>
               {this.state.members.map(person => (
-                <Col key={person[0]}>
+                <Col key={person[0][0]}>
                   <Button outline color="success" onClick={this.props.getStudent} value={person}>
-                    {person[1]}
+                    {person[0][1]}
                   </Button>
                 </Col>
               ))}

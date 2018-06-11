@@ -27,18 +27,8 @@ client.connect();
 
 function saveEmployee(empname, slackid, cohort) {
   const sql = 'INSERT INTO employees(empname, slackid, cohort) VALUES( $1, $2, $3 )';
-
-  client.query(sql, [empname, slackid, cohort]
-    // , (err, res) => {
-    // console.log(res);
-    // if (err) {
-    //   // console.log(err);
-    // } else {
-    //   console.log(res);
-    // }
-
-  // }
-);
+  const x = []
+  client.query(sql, [empname, slackid, cohort]).catch(err => x.push(err));
 }
 
 function saveMeetings(notes, message, empslackid, meetdate) {
@@ -46,7 +36,7 @@ function saveMeetings(notes, message, empslackid, meetdate) {
   client.query(sql, [notes, message, empslackid, meetdate], (err, res) => {
     // console.log(res);
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       console.log(res);
     }
@@ -58,7 +48,7 @@ function test() {
   client.query('SELECT * from response', (err, res) => {
     // console.log(res);
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       console.log(res);
     }
@@ -74,7 +64,7 @@ function addResponse(response, resdate, meetid) {
 
   client.query(sql, [response, resdate, meetid], (err, res) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       console.log(res);
     }
@@ -82,16 +72,53 @@ function addResponse(response, resdate, meetid) {
 }
 
 function checkStatus(meetid, callback) {
-  const sql = 'SELECT * FROM response WHERE meetid=($1)';
-  client.query(sql, [meetid], (err, res) => {
+  const sql2 = 'SELECT * FROM response WHERE meetid in($1)';
+  client.query(sql2, [meetid], (err, res) => {
     if (err) {
       console.log(err)
     } else {
-      console.log("RESPONSE FROM CHECKSTATUS DBFUNCTINO:", res)
+      // console.log("RESPONSE FROM CHECKSTATUS DBFUNCTINO:", res)
       callback(res)
     }
   })
 }
+
+function checkStatus2(users, callback) {
+  const sql = 'select distinct empslackid, id from MEETINGS where empslackid in ($1) and resid is NULL';
+  client.query(sql, [users], (err, res) => {
+    if (err) {
+      console.log(err)
+    } else {
+      callback(res)
+    }
+  })
+}
+
+function collierSKYN(users, callback) {
+  return new Promise((res, rej) => {
+    const sql = `select *
+  from meetings left join response
+	on response.meetid = meetings.id 
+  where meetings.empslackid = ANY($1::varchar(15)[])`
+  
+    client.query(sql, [users]).then(res).catch(rej)
+  })
+}
+
+
+function findLastMeeting(empid, callback) {
+  const sql = 'SELECT id FROM MEETINGS WHERE (empslackid = $1 AND resid IS NULL);';
+
+  client.query(sql, [empid], (err, res) => {
+    if (err) {
+      // console.log(err);
+    } else {
+      // console.log(res);
+      callback(res);
+    }
+  });
+}
+
 
 // Can only be called after the response table has been updated.
 // resid is "id" in the response table, and is a foreign key in meetings
@@ -100,7 +127,7 @@ function updateMeetingRes(meetid, resid) {
 
   client.query(sql, [resid, meetid], (err, res) => {
     if (err) {
-      console.log(err);
+      // console.log(err);
     } else {
       console.log(res);
     }
@@ -115,26 +142,14 @@ function updateMeetingRes(meetid, resid) {
 
 // I'm going to need help with the callback.
 
-function findLastMeeting(empid, callback) {
-  const sql = 'SELECT id FROM MEETINGS WHERE (empslackid = $1 AND resid IS NULL);';
-
-  client.query(sql, [empid], (err, res) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(res);
-      callback(res);
-    }
-  });
-}
-
 
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
 //   client.end();
 // });
-
+module.exports.collierSKYN = collierSKYN
 module.exports.checkStatus = checkStatus;
+module.exports.checkStatus2 = checkStatus2;
 module.exports.addResponse = addResponse;
 module.exports.updateMeetingRes = updateMeetingRes;
 module.exports.findLastMeeting = findLastMeeting;
