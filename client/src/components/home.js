@@ -68,14 +68,18 @@ class Home extends React.Component {
     return (
       <div className="App">
 
-        <button onClick={() => { console.log(this.state); }}>Home State</button>
-        <button onClick={() => { console.log(this.props); }}>Home Props</button>
+        {/* <button onClick={() => { console.log(this.state); }}>Home State</button>
+        <button onClick={() => { console.log(this.props); }}>Home Props</button> */}
         {/* <button onClick={() => { this.props.changeView('meeting'); }} > Message Page </button>
         <button onClick={() => { this.props.changeView('response'); }} > Response Page </button> */}
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>
+        <Collapse isOpen={!this.state.drop}>
+          <h1>Loading...</h1>
+        </Collapse>
+
         <Collapse isOpen={this.state.drop}>
           <h1>Home Screen</h1>
           <Button size="sm" outline color="danger" onClick={() => this.props.logout()}>Logout</Button>
@@ -119,6 +123,7 @@ class Home extends React.Component {
             </Row>
           </Container>
         </Collapse>
+
       </div>
     );
   }
