@@ -8,6 +8,7 @@ import {
   Row,
   Collapse,
 } from 'reactstrap';
+import { PulseLoader } from 'react-spinners';
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Home extends React.Component {
       allStudents: {},
       cohorts: [],
       members: [],
-      homeDrop: false,
+      drop: false,
     };
 
     this.getMembers = this.getMembers.bind(this);
@@ -28,6 +29,7 @@ class Home extends React.Component {
         this.setState({
           cohorts: response.data,
         });
+        // console.log('Get Channels');
       })
       .catch((error) => {
         console.log(error);
@@ -41,14 +43,17 @@ class Home extends React.Component {
           // console.log('AllStudentState:', this.state.allStudents)
         });
         // console.log(response)
-        console.log('Ready');
+        // console.log('Get Users');
+        this.setState({
+          drop: true,
+        });
       })
       .catch(console.error);
-    setTimeout(() => {
-      this.setState({
-        drop: true,
-      });
-    }, 7000);
+    // setTimeout(() => {
+    //   this.setState({
+    //     drop: true,
+    //   });
+    // }, 7000);
   }
 
   getMembers(e) {
@@ -77,7 +82,8 @@ class Home extends React.Component {
           <h1 className="App-title">LindenBot</h1>
         </header>
         <Collapse isOpen={!this.state.drop}>
-          <h1>Loading...</h1>
+          <h3>Loading...</h3>
+          <PulseLoader />
         </Collapse>
 
         <Collapse isOpen={this.state.drop}>

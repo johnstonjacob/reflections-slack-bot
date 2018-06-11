@@ -58,14 +58,12 @@ class App extends React.Component {
     });
   }
 
-
   // helper function for logging in during development
   logIn() {
     this.setState({
       isAuthenticated: true,
     });
   }
-
 
   // function to log out of session
   logOut() {
@@ -92,9 +90,9 @@ class App extends React.Component {
       default:
         return this.state.isAuthenticated ? (
           <Home
-            changeView={this.changeView}
+            // changeView={this.changeView}
             logout={this.logOut}
-            student={this.state.student}
+            // student={this.state.student}
             getStudent={this.getStudent}
           />
         ) : (

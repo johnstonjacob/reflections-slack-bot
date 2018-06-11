@@ -8,6 +8,7 @@ import {
   Col,
   Row,
   Button,
+  Collapse,
 } from 'reactstrap';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -19,12 +20,19 @@ class Meeting extends React.Component {
       student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
-      // students: [],
-      // dropdownOpen: false,
+      meetingDrop: false,
     };
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        meetingDrop: true,
+      });
+    }, 1500);
   }
 
   notesChange(e) {
@@ -70,49 +78,50 @@ class Meeting extends React.Component {
         </Button>
 
         <h1>Meeting Screen for {this.props.student.split(',')[1]}</h1>
-
-        <Container>
-          <Form>
-            <FormGroup>
-              <Label for="exampleText">Notes</Label>
-              <Row>
-                <Col>
-                  <Input
-                    type="textarea"
-                    name="text"
-                    id="exampleText"
-                    placeholder="1-on-1 notes"
-                    value={this.state.notes}
-                    onChange={this.notesChange}
-                  />
-                </Col>
-              </Row>
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleText">Message</Label>
-              <Input
-                type="textarea"
-                name="text"
-                id="exampleText"
-                placeholder="Message to student"
-                value={this.state.message}
-                onChange={this.messageChange}
-              />
-            </FormGroup>
-            <Button color="primary" onClick={this.submitMessage}> Submit </Button>
-          </Form>
-          {this.props.history.map(message => (
-            <div key={message.id}>
-              <h3> ===== Meeting Session ===== </h3>
-              <h4 className="admin">Notes: {message.notes}</h4>
-              <h3 className="admin">Message: {message.message}</h3>
-              <h5> ------ Reflection ------ </h5>
-              <h5 className="student">{message.restext}</h5>
-            </div>
+        <Collapse isOpen={this.state.meetingDrop}>
+          <Container>
+            <Form>
+              <FormGroup>
+                <Label for="exampleText">Notes</Label>
+                <Row>
+                  <Col>
+                    <Input
+                      type="textarea"
+                      name="text"
+                      id="exampleText"
+                      placeholder="1-on-1 notes"
+                      value={this.state.notes}
+                      onChange={this.notesChange}
+                    />
+                  </Col>
+                </Row>
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleText">Message</Label>
+                <Input
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  placeholder="Message to student"
+                  value={this.state.message}
+                  onChange={this.messageChange}
+                />
+              </FormGroup>
+              <Button color="primary" onClick={this.submitMessage}> Submit </Button>
+            </Form>
+            {this.props.history.map(message => (
+              <div key={message.id}>
+                <h3> ===== Meeting Session ===== </h3>
+                <h4 className="admin">Notes: {message.notes}</h4>
+                <h3 className="admin">Message: {message.message}</h3>
+                <h5> ------ Reflection ------ </h5>
+                <h5 className="student">{message.restext}</h5>
+              </div>
             ))}
 
 
-        </Container>
+          </Container>
+        </Collapse>
       </div>
     );
   }
