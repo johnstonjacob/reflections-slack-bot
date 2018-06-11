@@ -47,7 +47,7 @@ class Meeting extends React.Component {
         notes: this.state.notes,
         message: this.state.message,
       });
-      console.log('Message Sent');
+    console.log('Message Sent');
   }
 
   render() {
@@ -62,7 +62,8 @@ class Meeting extends React.Component {
         </header>
 
         <Button
-          outline color="secondary"
+          outline
+          color="secondary"
           onClick={() => { this.props.changeView('home'); }}
         >Home
         </Button>
@@ -99,19 +100,15 @@ class Meeting extends React.Component {
             </FormGroup>
             <Button color="primary" onClick={this.submitMessage}> Submit </Button>
           </Form>
-          {this.props.history.map( (message) => {
-            return(
-              <div key={message.id}>
+          {this.props.history.map(message => (
+            <div key={message.id}>
               <h3> ===== Meeting Session ===== </h3>
-                <h4 className="admin">Notes: {message.notes}</h4>
-                <h3 className="admin">Message: {message.message}</h3>
-                <h5> ------ Reflection ------ </h5>
-                <h5 className="student">{message.restext}</h5>
-              </div>
-            )
-          })}
-
-
+              <h4 className="admin">Notes: {message.notes}</h4>
+              <h3 className="admin">Message: {message.message}</h3>
+              <h5> ------ Reflection ------ </h5>
+              <h5 className="student">{message.restext}</h5>
+            </div>
+            ))}
 
 
         </Container>
@@ -124,4 +121,5 @@ export default Meeting;
 Meeting.propTypes = {
   changeView: PropTypes.func.isRequired,
   student: PropTypes.string.isRequired,
+  history: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
