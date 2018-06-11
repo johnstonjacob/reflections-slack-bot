@@ -23,7 +23,7 @@ class Home extends React.Component {
     this.getMembers = this.getMembers.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('/dash/getchannels', {})
       .then((response) => {
         this.setState({
