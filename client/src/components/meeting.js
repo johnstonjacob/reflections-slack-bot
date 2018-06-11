@@ -34,10 +34,12 @@ class Meeting extends React.Component {
       student: JSON.parse(this.props.student.split(',')[0].slice(2)),
       notes: '',
       message: '',
+      reminder: '',
       meetingDrop: false,
     };
     this.notesChange = this.notesChange.bind(this);
     this.messageChange = this.messageChange.bind(this);
+    this.reminderChange = this.reminderChange.bind(this);
     this.submitMessage = this.submitMessage.bind(this);
   }
 
@@ -49,16 +51,21 @@ class Meeting extends React.Component {
     }, 1000);
   }
 
+
+  messageChange(e) {
+    this.setState({
+      message: e.target.value,
+    });
+  }
   notesChange(e) {
     this.setState({
       notes: e.target.value,
     });
     // console.log(this.state.student.slice(2));
   }
-
-  messageChange(e) {
+  reminderChange(e) {
     this.setState({
-      message: e.target.value,
+      reminder: e.target.value,
     });
   }
 
@@ -68,8 +75,8 @@ class Meeting extends React.Component {
         student: this.state.student,
         notes: this.state.notes,
         message: this.state.message,
+        reminder: this.state.reminder,
       });
-    console.log('Message Sent');
     alert('Message Sent');
   }
 
@@ -126,12 +133,27 @@ class Meeting extends React.Component {
                   onChange={this.messageChange}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="exampleText">Reminder</Label>
+                <Row>
+                  <Col>
+                    <Input
+                      type="textarea"
+                      name="text"
+                      id="exampleText"
+                      placeholder="When should the student respond by?"
+                      value={this.state.reminder}
+                      onChange={this.reminderChange}
+                    />
+                  </Col>
+                </Row>
+              </FormGroup>
               <Button color="primary" onClick={this.submitMessage}> Submit </Button>
             </Form>
             {this.props.history.map(message => (
               <div key={message.id}>
                 <h3> ===== Meeting Session ===== </h3>
-                <h4 className="admin">Notes: {message.notes}</h4>
+                <h5 className="admin">Notes: {message.notes}</h5>
                 <h3 className="admin">Message: {message.message}</h3>
                 <h6 className="admin">Date: {timeConverter(message.meetdate)}</h6>
                 <h5> ------ Reflection ------ </h5>
