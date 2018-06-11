@@ -29,7 +29,8 @@ function getChannels() {
   return channelList;
 }
 
-function reminder(time, text= 'response to reflection', user){
+function reminder(time, user, text = 'please respond to the reflection request I sent last week') {
+
   console.log("REMINDER FUNCTION HITTT")
   web.apiCall('reminders.add',{time, text, user})
 }
