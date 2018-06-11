@@ -52,8 +52,8 @@ class Meeting extends React.Component {
     return (
       <div className="App">
 
-        {/* <button onClick={() => { console.log(this.state); }}>Meeting State</button>
-        <button onClick={() => { console.log(this.props); }}>Meeting Props</button> */}
+        <button onClick={() => { console.log(this.state); }}>Meeting State</button>
+        <button onClick={() => { console.log(this.props); }}>Meeting Props</button>
 
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
@@ -95,8 +95,20 @@ class Meeting extends React.Component {
                 onChange={this.messageChange}
               />
             </FormGroup>
-            <Button onClick={this.submitMessage}> Submit </Button>
+            <Button color="primary" onClick={this.submitMessage}> Submit </Button>
           </Form>
+          {this.props.history.map( (message) => {
+            return(
+              <div>
+                <h3>Your Message: {message.message}</h3>
+                <h5>Student Response: {message.restext}</h5>
+              </div>
+            )
+          })}
+
+
+
+
         </Container>
       </div>
     );
