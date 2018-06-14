@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
+const session = require('express-session');
 
+// router
 const employeeResponse = require('./routes/slack/employeeResponse');
 const employeeConfig = require('./routes/dash/employeeConfig');
 const meeting = require('./routes/dash/meeting');
@@ -11,8 +13,6 @@ const slackMessage = require('./routes/dash/postMessage');
 const slackUsers = require('./routes/dash/getusers');
 const slackChannels = require('./routes/dash/getchannels');
 const authRedirect = require('./routes/slack/authRedirect.js');
-const session = require('express-session');
-const db = require('../db/database.js');
 
 dotenv.config({
   silent: true,
@@ -30,34 +30,24 @@ if (process.env.BUILD === 'prod') app.use(express.static(`${__dirname}/../client
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-  console.log(`${req.method} on ${req.url}`);
+  log(`${req.method} on ${req.url}`);
   next();
 });
 
-app.use(
-  session({
-    secret: 'keyboard cat',
-    saveUninitialized: false,
-    resave: true,
-    cookie: {
-      maxAge: 3600000,
-    },
-  })
-);
-
-// app.get('/test', (req, res) => {
-//   db.test();
-// });
-
+app.use(session({
+  secret: 'keyboard cat',
+  saveUninitialized: false,
+  resave: true,
+  cookie: {
+    maxAge: 3600000,
+  },
+}));
 // checks whether user is authenticated whenever component is mounted
 app.get('/checkAuth', (req, res) => {
-  // console.log('reqSESSION', req.session, 'and Req.query:', req.query);
   res.send(req.session);
 });
 
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-});
+app.get('/logout', req => req.session.destroy());
 
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);

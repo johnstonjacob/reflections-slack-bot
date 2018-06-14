@@ -44,7 +44,7 @@ class App extends React.Component {
     this.setState({
       student: e.target.value,
       show: 'meeting',
-      history: (JSON.parse(e.target.value)).slice(1),
+      history: (JSON.parse(e.target.value)).slice(1).reverse(),
     });
     // console.log(typeof e.target.value);
     console.log(JSON.parse(e.target.value));
