@@ -18,7 +18,9 @@ const channelList = {};
 function postMessage(text, user = 'UAYRAJH8W') {
   web.im
     .open({ user })
-    .then((data) => rtm.sendMessage(text, data.channel.id).catch(console.error))
+    .then((data) => {
+      rtm.sendMessage(text, data.channel.id).catch(console.error);
+    })
     .catch(console.error);
 }
 
@@ -66,8 +68,6 @@ function setReminder(text = 'Respond to LindenBot', time, user) {
 updateInfo();
 setInterval(updateInfo, 1800000);
 
-// TODO write db query
-
 rtm.on('slack_event', (type, event) => {
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
     let meetId;
@@ -75,8 +75,6 @@ rtm.on('slack_event', (type, event) => {
       meetId = res.rows[res.rows.length - 1].id;
       db.addResponse(event.text, Date.now(), meetId);
     });
-    rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
-    console.log(event);
   }
 });
 
