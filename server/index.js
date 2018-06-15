@@ -25,6 +25,11 @@ function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
+app.use((req, res, next) => {
+  req.url = req.url.substring(12);
+  next();
+});
+console.log(__dirname);
 if (process.env.BUILD === 'prod') app.use(express.static(`${__dirname}/../client/build`));
 
 app.use(bodyParser.json());

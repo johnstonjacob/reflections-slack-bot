@@ -1,6 +1,9 @@
 const { Client } = require('pg');
+const dotenv = require('dotenv');
 
-const connectionString = 'postgresql://plumstack:plumstackgang@206.189.170.211:5432/plumstack';
+dotenv.config({silent: true});
+
+const connectionString = process.env.POSTGRESQL_AUTH 
 
 const client = new Client({
   connectionString,
