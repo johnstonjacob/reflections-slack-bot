@@ -24,7 +24,7 @@ class Home extends React.Component {
   }
 
   componentWillMount() {
-    axios.get('/dash/getchannels', {})
+    axios.get('/reflections/dash/getchannels', {})
       .then((response) => {
         this.setState({
           cohorts: response.data,
@@ -33,7 +33,7 @@ class Home extends React.Component {
       .catch((error) => {
       });
 
-    axios.get('/dash/getusers', {})
+    axios.get('/reflections/dash/getusers', {})
       .then((response) => {
         this.setState({
           allStudents: response.data,

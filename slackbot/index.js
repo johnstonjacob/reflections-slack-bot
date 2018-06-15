@@ -4,7 +4,7 @@ const db = require('../db/database.js');
 
 dotenv.config({ silent: true });
 const token = process.env.BOT_OAUTH;
-const userToken = process.env.BOT_USER_OAUTH;
+const userToken = process.env.SLACK_OAUTH;
 const web = new WebClient(token);
 const rtm = new RTMClient(token);
 
@@ -14,7 +14,6 @@ const userList = {};
 const channelList = {};
 
 // user = 'UAYRAJH8W'
-
 function postMessage(text, user = 'UAYRAJH8W') {
   web.im
     .open({ user })
@@ -69,6 +68,7 @@ updateInfo();
 setInterval(updateInfo, 1800000);
 
 rtm.on('slack_event', (type, event) => {
+  console.log(event);
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
     let meetId;
     db.findLastMeeting(event.user, (res) => {

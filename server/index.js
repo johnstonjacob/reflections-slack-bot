@@ -20,34 +20,40 @@ dotenv.config({
 
 const app = express();
 const port = process.env.PORT || 8080;
-
+//app.enable('trust proxy');
 function log(message) {
   process.stdout.write(`${message}\n`);
 }
 
-if (process.env.BUILD === 'prod') app.use(express.static(`${__dirname}/../client/build`));
+app.use((req, res, next) => {
+  req.url = req.url.substring(12);
+  next();
+});
 
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use((req, res, next) => {
   log(`${req.method} on ${req.url}`);
   next();
 });
+//if (process.env.BUILD === 'prod') app.use(express.static('/home/node/plumstack/client/build'));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
-app.use(session({
-  secret: 'keyboard cat',
-  saveUninitialized: false,
-  resave: true,
-  cookie: {
-    maxAge: 3600000,
-  },
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    saveUninitialized: false,
+    resave: true,
+    cookie: {
+      maxAge: 3600000,
+    },
+  }),
+);
 // checks whether user is authenticated whenever component is mounted
 app.get('/checkAuth', (req, res) => {
   res.send(req.session);
 });
 
-app.get('/logout', req => req.session.destroy());
+app.get('/logout', (req) => req.session.destroy());
 
 app.use('/dash/employeeConfig', employeeConfig);
 app.use('/dash/meeting', meeting);
