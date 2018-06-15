@@ -16,16 +16,17 @@ router.get('/', (req, res) => {
       process.env.LOGIN_CLIENT_ID
     }&client_secret=${
       process.env.LOGIN_CLIENT_SECRET
-    }&code=${code}&redirect_uri=http://206.189.170.211/slack/auth`,
+    }&code=${code}&redirect_uri=http://206.189.170.211/reflections/slack/auth`,
   };
   request(options)
     .then((user) => {
+      console.log(user);
       const parsed = JSON.parse(user);
       if (parsed.access_token) {
         req.session.isAuthenticated = true;
-        res.redirect('/');
+        res.redirect('/reflections');
       } else {
-        res.redirect('/failedLogin'); // TODO
+        res.redirect('/reflections/failedLogin'); // TODO
       }
     })
     .catch(console.error);

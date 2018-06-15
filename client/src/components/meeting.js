@@ -46,13 +46,16 @@ class Meeting extends React.Component {
   }
 
   submitMessage() {
-    const options = {
-      method: 'POST',
-      url: '/dash/postMessage',
+    const data = {
       student: this.state.student,
       notes: this.state.notes,
       message: this.state.message,
       reminder: this.state.reminder,
+    };
+    const options = {
+      method: 'POST',
+      data,
+      url: '/reflections/dash/postMessage',
     };
     axios(options);
     alert('Message Sent');
@@ -61,7 +64,6 @@ class Meeting extends React.Component {
   render() {
     return (
       <div className="App">
-
         <header className="App-header">
           <h1 className="App-title">LindenBot</h1>
         </header>

@@ -29,7 +29,7 @@ class App extends React.Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: '/checkAuth',
+      url: '/reflections/checkAuth',
     })
       .then((response) => {
         // console.log('response:', response.data);
@@ -70,7 +70,7 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: false,
     });
-    axios.get('/logout');
+    axios.get('/reflections/logout');
     console.log('Logged Out');
   }
 
