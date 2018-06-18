@@ -4,7 +4,7 @@ const db = require('../db/database.js');
 
 dotenv.config({ silent: true });
 const token = process.env.BOT_OAUTH;
-const userToken = process.env.BOT_USER_OAUTH;
+const userToken = process.env.SLACK_OAUTH;
 const web = new WebClient(token);
 const rtm = new RTMClient(token);
 
@@ -14,11 +14,12 @@ const userList = {};
 const channelList = {};
 
 // user = 'UAYRAJH8W'
-
 function postMessage(text, user = 'UAYRAJH8W') {
   web.im
     .open({ user })
-    .then((data) => rtm.sendMessage(text, data.channel.id).catch(console.error))
+    .then((data) => {
+      rtm.sendMessage(text, data.channel.id).catch(console.error);
+    })
     .catch(console.error);
 }
 
@@ -66,8 +67,6 @@ function setReminder(text = 'Respond to LindenBot', time, user) {
 updateInfo();
 setInterval(updateInfo, 1800000);
 
-// TODO write db query
-
 rtm.on('slack_event', (type, event) => {
   if (type === 'message' && event.channel[0] === 'D' && event.user !== 'UB0KBE29G') {
     let meetId;
@@ -75,8 +74,6 @@ rtm.on('slack_event', (type, event) => {
       meetId = res.rows[res.rows.length - 1].id;
       db.addResponse(event.text, Date.now(), meetId);
     });
-    rtm.sendMessage(`123test, ${userList[event.user]}`, event.channel);
-    console.log(event);
   }
 });
 
