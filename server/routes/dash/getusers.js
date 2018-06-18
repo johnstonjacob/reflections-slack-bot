@@ -47,7 +47,7 @@ function formatUsers() {
 }
 
 router.get('/', (req, res) => {
-  formatUsers().then((result) => res.send(result));
+  formatUsers().then(result => res.send(result));
 });
 
 module.exports = router;
