@@ -26,20 +26,20 @@ async function formatUsers() {
     return acc;
   }, {});
 
-  users.map(function userMap(user) {
-    console.log(this);
-    if (!this[user[0]]) {
+  users.forEach(function userMap(user) {
+    const userid = user[0];
+    if (!this[userid]) {
       user.push(0);
-      this[user[0]] = [user];
-      return user[0];
-    } else if (this[user[0]].slice(-1)[0].meetid === null) {
+      this[userid] = [user];
+      return userid;
+    } else if (this[userid].slice(-1)[0].meetid === null) {
       user.push(1);
-      this[user[0]].unshift(user);
-      return user[0];
+      this[userid].unshift(user);
+      return userid;
     }
     user.push(2);
-    this[user[0]].unshift(user);
-    return user[0];
+    this[userid].unshift(user);
+    return userid;
   }, formattedUsers);
   return formattedUsers;
 }
