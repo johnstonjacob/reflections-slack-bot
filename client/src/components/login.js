@@ -4,7 +4,7 @@ import React from 'react';
 const Login = () => (
   <div className="App">
     <header className="App-header">
-      <h1 className="App-title">LindenBot</h1>
+      <h1 className="App-title">Reflections</h1>
     </header>
     {/* <button onClick={() => props.test()}>TEST</button> */}
     {/* <button onClick={props.logIn}>Debug Log In</button> */}
