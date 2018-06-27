@@ -65,7 +65,7 @@ class Meeting extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">LindenBot</h1>
+          <h1 className="App-title">Reflections</h1>
         </header>
         <Collapse isOpen={!this.state.meetingDrop}>
           <h3>Loading...</h3>
